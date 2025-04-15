@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form No. 28 Attendance Report</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 10px;
+        font-size: 10px;
+      }
+
+      h2 {
+        text-align: center;
+        font-size: 14px;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 12px;
+      }
+
+      table {
+        width: 100%;
+        /* border-collapse: collapse; */
+        border-collapse: separate;
+        border-spacing: 0;
+        margin-top: 5px;
+        table-layout: fixed;
+        word-wrap: break-word;
+      }
+
+      th,
+      td {
+        border: 1px solid black;
+        padding: 4px;
+        text-align: center;
+        font-size: 10px;
+      }
+
+      th {
+        /* background-color: #f2f2f2;/ */
+        /* writing-mode: vertical-rl; */
+        /* -webkit-transform: rotate(-90deg); */
+        /* transform: rotate(180deg); */
+
+        width: auto;
+        /* height: 100px; */
+      }
+
+      /* Allow page breaks */
+      tr {
+        page-break-inside: avoid;
+      }
+
+      .small-text {
+        font-size: 8px;
+      }
+      .rotating {
+        -webkit-transform: rotate(-90deg);
+        height: 100px;
+        width: 100px;
+        text-align: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="header">
+      <h2>FORM NO. 28 - MUSTER ROLL</h2>
+      <p><strong>Prescribed under Rule 110</strong></p>
+      <p>Company: <strong><%= companyName %></strong></p>
+      <p>Month-Year: <strong><%= monthYear %></strong></p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="2">Sl. No</th>
+          <th rowspan="2">
+            <div class="rotating">serial no</div>
+          </th>
+
+          <th rowspan="2"><div class="rotating">Worker Name</div></th>
+          <th rowspan="2"><div class="rotating">Father/Husband Name</div></th>
+          <th rowspan="2"><div class="rotating">Date of Appointment</div></th>
+          <th colspan="2">Group to which the worker belong</th>
+
+          <th rowspan="2">Relay No</th>
+          <th colspan="2">Adolescent if certified as adult</th>
+
+          <th colspan="31">Daily Attendance</th>
+          <th colspan="5">Man days lost due to</th>
+          <th rowspan="2">Total Mandays Worked</th>
+
+          <th rowspan="2"><div class="rotating">Any Other Reason</div></th>
+          <th rowspan="2"><div class="rotating">Total of 14 to 19</div></th>
+          <th rowspan="2">
+            <div class="rotating">Festival & National Holidays</div>
+          </th>
+          <th rowspan="2"><div class="rotating">Weekly Holidays Paid</div></th>
+          <th rowspan="2">
+            <div class="rotating">Total Mandays Paid For</div>
+          </th>
+          <th rowspan="2"><div class="rotating">Remarks</div></th>
+        </tr>
+        <tr>
+          <th rowspan="2"><div class="rotating">Occupation</div></th>
+          <th rowspan="2"><div class="rotating">Alphabet Assigned</div></th>
+          <th rowspan="2"><div class="rotating">Certificate No & Date</div></th>
+          <th rowspan="2"><div class="rotating">Token No (Sec. 68)</div></th>
+
+          <% for (let i = 1; i <= 31; i++) { %>
+          <th>Day <%= i %></th>
+          <% } %>
+          <th rowspan="2"><div class="rotating">Strike</div></th>
+          <th rowspan="2"><div class="rotating">Lay Off</div></th>
+          <th rowspan="2"><div class="rotating">Lockout</div></th>
+          <th rowspan="2"><div class="rotating">Leave With Pay</div></th>
+          <th rowspan="2"><div class="rotating">Leave Without Pay</div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% records.forEach((record, index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= record.employee_id %></td>
+          <td>
+            <%= record.employee.first_name %> <%= record.employee.last_name %>
+          </td>
+          <td><%= record.father_husbandname || 'N/A' %></td>
+          <td><%= record.date_of_appointment || 'N/A' %></td>
+          <td><%= record.occupation || 'N/A' %></td>
+          <td><%= record.alphabet_assigned || 'N/A' %></td>
+          <td><%= record.number_of_relay || 'N/A' %></td>
+          <td><%= record.certificate_number_date || 'N/A' %></td>
+          <td><%= record.section_68_token_number || 'N/A' %></td>
+          <% for (let i = 1; i <= 31; i++) { %>
+          <td><%= record[`day_${i}`] || '-' %></td>
+          <% } %>
+          <td><%= record.total_mandays_worked || 0 %></td>
+          <td><%= record.strike || 0 %></td>
+          <td><%= record.layoff || 0 %></td>
+          <td><%= record.lockout || 0 %></td>
+          <td><%= record.leave_with_pay || 0 %></td>
+          <td><%= record.leave_without_pay || 0 %></td>
+          <td><%= record.any_other_reason || 0 %></td>
+          <td>
+            <%= (record.strike || 0) + (record.layoff || 0) + (record.lockout ||
+            0) + (record.leave_with_pay || 0) + (record.leave_without_pay || 0)
+            + (record.any_other_reason || 0) %>
+          </td>
+          <td><%= record.number_festival_national_holidays || 0 %></td>
+          <td><%= record.number_weekly_holidays_off_paid || 0 %></td>
+          <td><%= record.total_mandays_paid_for || 0 %></td>
+          <td><%= record.remarks || 'N/A' %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

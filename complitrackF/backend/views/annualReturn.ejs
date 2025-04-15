@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Annual Return Report</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        font-size: 12px;
+      }
+
+      h2,
+      h4 {
+        text-align: center;
+        font-size: 16px;
+      }
+
+      .registration {
+        text-align: right;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .content {
+        margin-top: 20px;
+      }
+
+      .certification {
+        margin-top: 15px;
+        line-height: 1.5;
+      }
+
+      .laws {
+        margin-top: 10px;
+        padding-left: 20px;
+      }
+
+      .section {
+        margin-bottom: 15px;
+      }
+
+      .section-title {
+        margin-bottom: 10px;
+      }
+
+      .section-content {
+        width: 60%;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      td,
+      th {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: left;
+      }
+
+      .company-info {
+        text-align: right;
+      }
+
+      hr {
+        margin-top: 20px;
+        background-color: black;
+        color: black;
+        border-width: 1px;
+        width: 100%;
+        border-style: inset;
+      }
+
+      /* .in {
+      margin-left: 10px;
+      margin-bottom: 25px;
+    } */
+      .section-title span.in {
+        display: inline-block;
+        margin-left: 10px;
+        margin-bottom: 10px;
+      }
+
+      .section-title span.question {
+        display: inline-block;
+
+        margin-bottom: 10px;
+      }
+
+      /* .question {
+      font-weight : bold;
+    } */
+    </style>
+  </head>
+
+  <body>
+    <h2>ANNEXURE V <%= data.year %></h2>
+    <h4>
+      FORM FOR SELF CERTIFICATION AND CONSOLIDATED ANNUAL RETURN TO BE SUBMITTED
+      BY THE EMPLOYER REGISTERED UNDER THE SCHEME
+    </h4>
+
+    <div class="registration">REGISTRATION NO : <%= data.companyInfo.registrationNo %></div>
+    <p>NAME & ADDRESS OF THE REGISTERED ESTABLISHMENT</p>
+    <p style="text-decoration: underline; text-align: center;"><%= data.companyInfo.nameOfEstablishment %></p> 
+    <p style="text-decoration: underline; text-align: center;"><%= data.companyInfo.address %></p>
+
+    <div class="content">
+      <p>
+        I, Mr./Mrs./Miss <strong style="text-decoration: underline;"><%= data.companyInfo.employerName %></strong>, hereby certify that I am the
+        Occupier/Employer/Contractor of the factory establishment whose
+        identification and general details are as follows.I hereby certify that
+        the status of compliance of the following labour laws and annual
+        information of my enterprise during the year <strong><%= data.year %></strong> is as
+        under :
+      </p>
+
+      <div class="laws">
+        <p>
+          (i) The Minimum Wages Act, 1948 and Gujarat Rule-21 (4) 1961, there
+          under
+        </p>
+        <p>
+          (ii) The Contract Labour [Regulation & Abolition] Act, 1970 and
+          Gujarat Rules 82 (1), 82 (2), 1972 thereunder
+        </p>
+        <p>
+          (iii) The Factories Act, 1948 and Gujarat Factories Rules 1963 (GFR)
+        </p>
+        <p>(iv) The Payment of Bonus Act, 1965 and Rule 5 there under</p>
+        <p>
+          (v) The Payment of Gratuity Act, 1972 and Gujarat Rule 1976 there
+          under
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        <span class="question"
+          >1. Name and address of establishment/Factory :</span
+        >
+        <span class="section-content">
+          <%= data.companyInfo.nameOfEstablishment %>, <br />
+          <%= data.companyInfo.address %>
+        </span>
+      </div>
+      <table>
+        <tr>
+          <td><strong>Tele. No.</strong></td>
+          <td><strong>Mobile No.</strong></td>
+          <td><strong>Fax No.</strong></td>
+          <td><strong>Email Address</strong></td>
+        </tr>
+        <tr>
+          <td><%= data.companyInfo.establishmentTeleNo %></td>
+          <td><%= data.companyInfo.establishmentMobileNo %></td>
+          <td><%= data.companyInfo.establishmentFaxNo %></td>
+          <td><%= data.companyInfo.establishmentEmail %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        <span class="question"
+          >2. Name and residential address of the Employer/Occupier/Contractor
+          :</span
+        >
+        <span class="section-content"><%= data.companyInfo.employerName %>, <%= data.companyInfo.employerAddress %></span>
+      </div>
+      <table>
+        <tr>
+          <td><strong>Tele. No.</strong></td>
+          <td><strong>Mobile No.</strong></td>
+          <td><strong>Fax No.</strong></td>
+          <td><strong>Email Address</strong></td>
+        </tr>
+        <tr>
+          <td><%= data.companyInfo.employerTeleNo %></td>
+          <td><%= data.companyInfo.employerMobileNo %></td>
+          <td><%= data.companyInfo.employerFaxNo %></td>
+          <td><%= data.companyInfo.employerEmail %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        <span class="question"
+          >3. Name and residential address of the Manager or person responsible
+          for supervision or control of the establishment/factory :</span
+        >
+        <span class="section-content"><%= data.companyInfo.managerName %>, <%= data.companyInfo.managerAddress %></span>
+      </div>
+      <table>
+        <tr>
+          <td><strong>Tele. No.</strong></td>
+          <td><strong>Mobile No.</strong></td>
+          <td><strong>Fax No.</strong></td>
+          <td><strong>Email Address</strong></td>
+        </tr>
+        <tr>
+          <td><%= data.companyInfo.managerTeleNo %></td>
+          <td><%= data.companyInfo.managerMobileNo %></td>
+          <td><%= data.companyInfo.managerFaxNo %></td>
+          <td><%= data.companyInfo.managerEmail %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        <span class="question"
+          >4.Registration No./Licence No. and date of commencement of the
+          establishment/Factory :</span
+        >
+        <span class="section-content"><%= data.companyInfo.registrationNo %></span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        <span class="question">5.Nature of Industry/activity :</span>
+        <span class="section-content"><%= data.companyInfo.industryType %></span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        <span class="question"
+          >6.Number of Employees employed (Including contract workers) :</span
+        >
+        <span class="section-content"><%= data.total_employees %></span>
+      </div>
+    </div>
+
+    <table>
+      <tr>
+        <th>Type of Worker</th>
+        <th>Unskilled</th>
+        <th>semiskilled</th>
+        <th>Skilled</th>
+        <th>Total</th>
+        <th>Male</th>
+        <th>Female</th>
+      </tr>
+      <tr>
+        <td class="type-of-worker">Direct</td>
+        <td>0</td>
+        <td>0</td>
+        <td><%= data.employeeDetails.directSkilled %></td>
+        <td><%= data.employeeDetails.contractorTotal %></td>
+        <td><%= data.employeeDetails.directMale %></td>
+        <td><%= data.employeeDetails.directFemale %></td>
+      </tr>
+      <tr>
+        <td class="type-of-worker">Through Contractor</td>
+        <td>0</td>
+        <td>0</td>
+        <td><%= data.employeeDetails.contractorSkilled %></td>
+        <td><%= data.employeeDetails.contractorTotal %></td>
+        <td><%= data.employeeDetails.contractorMale %></td>
+        <td><%= data.employeeDetails.contractorFemale %></td>
+      </tr>
+      <tr>
+        <td class="type-of-worker">Total</td>
+        <td></td>
+        <td></td>
+        <td><%= data.employeeDetails.direct.skilled %></td>
+        <td><%= data.employeeDetails.direct.total %></td>
+        <td><%= data.employeeDetails.direct.male %></td>
+        <td><%= data.employeeDetails.direct.female %></td>
+      </tr>
+    </table>
+
+    <!-- -------------------------- PART A -------------------------------- -->
+    <hr />
+    <center>
+      <h3>Part A</h3>
+    </center>
+    <p>
+      My establishment is covered under the Minimum Wages Act, 1948 and rules
+      made thereunder and all workers/office staff are paid wages overtime wages
+      as prescribed by the Government of Gujarat. I have maintained all the
+      registers and records as required under the law.
+    </p>
+
+    <div class="section">
+      <div class="section-title">
+        <span class="question"
+          >1.Number of days the establishment/factory worked in the year :</span
+        >
+        <span class="section-content"><%= data.partA.totalWorkingDays %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question">2 :Number of man days worked in the year :</span>
+        <span class="section-content"><%= data.partA.totalManDays %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question"
+          >3 :Number of average employees employed in the year :</span
+        >
+        <span class="section-content"><%= data.partA.avgEmployees %></span>
+      </div>
+
+      <br /><br /><br />
+      <div class="section-title">
+        <span class="question">4 :Total wages paid category wise :</span>
+        <span class="section-content">
+          <table>
+            <tr>
+              <td class="type-of-worker">Male</td>
+              <td><%= data.wages_male %></td>
+            </tr>
+            <tr>
+              <td class="type-of-worker">Female</td>
+              <td><%= data.wages_female %></td>
+            </tr>
+          </table>
+        </span>
+      </div>
+
+      <div class="section-title">
+        <span class="question">5.Total Fine Imposed:, if any :</span>
+        <span class="section-content"><%= data.partA.totalFine %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question">6.Other deductions:, if any :</span>
+        <span class="section-content"><%= data.partA.totalDeductions %></span>
+      </div>
+    </div>
+
+    <!-- -------------------------- PART B -------------------------------- -->
+    <hr />
+    <center>
+      <h3>Part B</h3>
+
+      <p style="font-weight: bold">
+        The Part A and B are to be furnished if the maximum number of employees
+        employed on any day during the year under report exceed 9 (Nine)
+      </p>
+    </center>
+
+    <span
+      >My establishment is covered under the Payment of Bonus Act, 1965 and the
+      workers are paid bonus. I have maintained records and registers as per the
+      Act.</span
+    >
+
+    <br /><br />
+    <div class="section">
+      <div class="section-title">
+        <span class="question">1.Percentage of bonus paid :</span>
+        <span class="section-content"><%= data.partB.bonusPercentage %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question">2.Number of beneficiaries :</span>
+        <span class="section-content"><%= data.partB.bonusBeneficiaries %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question">3.Total amount of bonus paid :</span>
+        <span class="section-content"><%= data.partB.totalBonusPaid %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question">4.Date of payment :</span>
+        <span class="section-content"><%= data.partB.bonusPaymentDate %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question">5.If bonus is not paid, reason there of :</span>
+        <span class="section-content"><%= data.partB.bonusNotPaidReason %></span>
+      </div>
+    </div>
+
+    <!-- -------------------------- PART C -------------------------------- -->
+    <hr />
+    <center>
+      <h3>Part C</h3>
+
+      <p style="font-weight: bold">
+        Part A, B & C are to be furnished, if the establishment has employed
+        more than 9 contract labour on any day during the year under report.
+        (Details to be provided by the Principal Employer)
+      </p>
+    </center>
+
+    <span
+      >My establishment is covered under Contract Labour (Regulation and
+      Abolition) Act, 1970 and the workers are paid wages and overtime wages as
+      prescribed by the Government of Gujarat. I have maintained records and
+      registers as per the Act.</span
+    >
+
+    <br /><br />
+    <div class="section">
+      <div class="section-title">
+        <span class="question"
+          >1.Name and postal address of the contractor :</span
+        >
+        <span class="section-content"><%= data.partC.contractorNameAddress %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question"
+          >2.Nature of work/operations of contractor :</span
+        >
+        <span class="section-content"><%= data.partC.contractorWorkNature %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question"
+          >3.Total number of days during he year on which contract labour was
+          employed :</span
+        >
+        <span class="section-content"><%= data.partC.contractLabourDays %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question"
+          >4.Total number of man days worked during the year by contract labour
+          :</span
+        >
+        <span class="section-content"><%= data.partC.contractManDaysWorked %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question"
+          >5.Total number of days during the year on which direct labour was
+          employed :</span
+        >
+        <span class="section-content"><%= data.partC.directLabourDays %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question"
+          >6.Total number of man days worked by direct labour :</span
+        >
+        <span class="section-content"><%= data.partC.directManDaysWorked %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question"
+          >7.Change, if any, in the management of establishment its locations,
+          or any other particulars furnished to the Registering Officer in the
+          application for the registration (Details may be furnished with dates
+          of changes) :</span
+        >
+        <span class="section-content"><%= data.partC.establishmentChanges %></span>
+      </div>
+    </div>
+
+    <!-- -------------------------- YEARLY RETURN to be submitted by the Contractors employing more than 9 workers. -------------------------------- -->
+    <hr />
+    <center>
+      <p style="font-weight: bold">
+        YEARLY RETURN to be submitted by the Contractors employing more than 9
+        workers.
+      </p>
+    </center>
+
+    <div class="section">
+      <div class="section-title">
+        <span class="question">1.Duration of contract :</span>
+        <span class="section-content"><%= data.yearlyReturn.contractDuration %></span>
+        <br />
+        <span class="in">Number of days worked during the year :</span>
+        <span class="section-content"><%= data.yearlyReturn.daysWorked %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question"
+          >2.Average number of contract labour worked on any day during the year
+          :</span
+        >
+        <span class="section-content"><%= data.yearlyReturn.averageContractLabour %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question">3.Details of</span>
+        <br />
+        <span class="in">(a) Working hours : </span>
+        <span class="section-content"><%= data.yearlyReturn.workingHours %></span>
+        <br />
+        <span class="in">(b) Overtime work : </span>
+        <span class="section-content"><%= data.yearlyReturn.overtimeWork %></span>
+        <br />
+        <span class="in">(c) Weekly holiday : </span>
+        <span class="section-content"><%= data.yearlyReturn.weeklyHoliday %></span>
+        <br />
+        <span class="in">(d) Spread over : </span>
+        <span class="section-content"><%= data.yearlyReturn.spreadOver %></span>
+        <br />
+        <span class="in">(e) Weekly holiday paid or not : </span>
+        <span class="section-content"><%= data.yearlyReturn.weeklyHolidayPaid %></span>
+      </div>
+
+      <div class="section-title">
+        <span class="question">4.Number of mandays worked :</span>
+
+        <br />
+        <span class="in">During the year</span>
+        <table>
+          <tr>
+            <td><%= data.yearlyReturn.maleManDays %></td>
+            <td><%= data.yearlyReturn.femaleManDays %></td>
+            <td><%= data.yearlyReturn.totalManDays %></td>
+          </tr>
+          
+        </table>
+      </div>
+
+      <div class="section-title">
+        <span class="question">5.Amount of wages paid :</span>
+        <span class="section-content"><%= data.yearlyReturn.wagesPaid %> </span>
+      </div>
+
+      <div class="section-title">
+        <span class="question">6.Amount of deduction from wages :</span>
+        <span class="section-content"><%= data.yearlyReturn.wageDeductions %> </span>
+      </div>
+
+      <div class="section-title">
+        <span class="question">7.The following has been provided?</span>
+        <br />
+        <span class="in">Canteen : </span>
+        <span class="section-content"><%= data.yearlyReturn.canteen %></span>
+        <br />
+        <span class="in">Rest rooms : </span>
+        <span class="section-content"><%= data.yearlyReturn.restrooms %></span>
+        <br />
+        <span class="in">Drinking water : </span>
+        <span class="section-content"><%= data.yearlyReturn.drinkingWater %></span>
+        <br />
+        <span class="in">Creches : </span>
+        <span class="section-content"><%= data.yearlyReturn.creches %></span>
+        <br />
+        <span class="in">First aid : </span>
+        <span class="section-content"><%= data.yearlyReturn.firstaid %></span>
+      </div>
+    </div>
+
+    <!-- -------------------------- PART D -------------------------------- -->
+    <hr />
+    <center>
+      <h3>Part D</h3>
+
+      <p style="font-weight: bold">
+        Details for self-certification under The Factories Act, 1948 and Rules
+        made there under
+      </p>
+    </center>
+
+    <div style="margin-bottom: 5px">
+      <span
+        >My factory is registered under The Factories Act, 1948 and provisions
+        regarding Health, Safety, Welfare etc., are complied with.</span
+      >
+    </div>
+
+    <div class="section-title">
+      <h3>(A) Factory Identification details</h3>
+      <br />
+      <span class="in">FIN (Factory Identification Number) : </span>
+      <span class="section-content"><%= data.partD.partD_A.factoryIdentification %></span>
+      <br />
+      <span class="in">NlC Code (Five digit) : </span>
+      <span class="section-content"><%= data.partD.partD_A.nicCode %></span>
+      <br />
+      <span class="in"
+        >Sector (PublicIPrivateICo-operative/Joint Venture) :
+      </span>
+      <span class="section-content"><%= data.partD.partD_A.sector %></span>
+      <br />
+      <span class="in"
+        >Registration under Section {2m (i) 12m (ii) /85} :
+      </span>
+      <span class="section-content"><%= data.partD.partD_A.registrationSection %></span>
+      <br />
+      <span class="in">Registration No : </span>
+      <span class="section-content"><%= data.partD.partD_A.registrationNo %></span>
+      <br />
+      <span class="in">License No : </span>
+      <span class="section-content"><%= data.partD.partD_A.licenseNo %></span>
+      <br />
+      <span class="in">Licensed workers : </span>
+      <span class="section-content"><%= data.partD.partD_A.licensedWorkers %></span>
+      <br />
+      <span class="in">Licensed H.P : </span>
+      <span class="section-content"><%= data.partD.partD_A.licensedHP %></span>
+      <br />
+      <span class="in">License renewal position (year) : </span>
+      <span class="section-content"><%= data.partD.partD_A.licenseRenewalYear %></span>
+      <br />
+      <span class="in"
+        >License renewal application submitted for the year :
+      </span>
+      <span class="section-content"><%= data.partD.partD_A.licenseRenewalApplicationYear %></span>
+    </div>
+
+    <table
+      style="width: 100%; border-collapse: collapse; border: 1px solid black"
+    >
+      <!-- First Row: Plan Approval No & Date -->
+      <tr>
+        <td
+          style="
+            width: 20%;
+            padding: 5px;
+            border-bottom: none;
+            border-right: none;
+          "
+        >
+          Plan approval No: <span><%= data.partD.partD_A.planApprovalNo %></span>
+        </td>
+
+        <td
+          style="
+            text-align: right;
+            padding: 5px;
+            border-bottom: none;
+            border-right: none;
+            border-left: none;
+          "
+        >
+          Date:
+          <span>########</span>
+        </td>
+
+        <td
+          style="
+            padding: 5px;
+            border-bottom: none;
+            border-right: none;
+            border-left: none;
+          "
+        >
+          <strong>Stability Certificate</strong>
+        </td>
+      </tr>
+      <!-- Second Row: Stability Certificate Details -->
+      <tr>
+        <td colspan="2" style="border: none"></td>
+
+        <td
+          style="
+            padding: 5px;
+            text-align: left;
+            border-top: none;
+            border-left: none;
+          "
+        >
+          (i) obtained on date : 01-01-2024 <br />
+          (ii) submitted on date: 25-12-2023
+        </td>
+      </tr>
+    </table>
+
+    <div class="section-title">
+      <br />
+      <span class="in">Finished products : </span>
+      <span class="section-content"><%= data.partD.partD_A.finishedProducts %></span>
+      <br />
+      <span class="in">Intermediates : </span>
+      <span class="section-content"><%= data.partD.partD_A.intermediates %></span>
+      <br />
+      <span class="in">Raw materials : </span>
+      <span class="section-content"><%= data.partD.partD_A.rawMaterials %></span>
+    </div>
+
+    <!-- part B -->
+    <div class="section-title">
+      <h3>(B) Details of employment</h3>
+      <div
+        class="section-title"
+        
+      >
+        <span class="question">(i) Average daily workers:</span>
+        <span class="in">
+          <table style="width: auto; display: inline-table">
+            <tr>
+              <td>Male :</td>
+              <td><%= data.partD.partD_B.averageDailyMale %></td>
+              <td>Female :</td>
+              <td><%= data.partD.partD_B.averageDailyFemale %></td>
+            </tr>
+          </table>
+        </span>
+        <br />
+        <span class="in"
+          >(ii) Number of days the factory worked during previous year: :
+        </span>
+        <span class="section-content"><%= data.partD.partD_B.daysWorked %></span>
+        <br />
+        <span class="in"
+          >(iii) Number of man days worked (i.e. aggregate attendance during the
+          previous year) :  <span><%= data.partD.partD_B.manDaysWorked %></span></span>
+        </span>
+
+        <span>
+          <table>
+            <tr>
+              <td>(a)</td>
+              <td>Adults</td>
+              <td>Men :</td>
+              <td><%= data.partD.partD_B.adultMale %></td>
+              <td>Women :</td>
+              <td><%= data.partD.partD_B.adultFemale %></td>
+              <td>Total :</td>
+              <td><%= data.partD.partD_B.adultTotal %></td>
+            </tr>
+            <tr>
+              <td>(b)</td>
+              <td>Adolescents</td>
+              <td>Men :</td>
+              <td><%= data.partD.partD_B.adolescentMale %></td>
+              <td>Women :</td>
+              <td><%= data.partD.partD_B.adolescentFemale %></td>
+              <td>Total :</td>
+              <td><%= data.partD.partD_B.adolescentTotal %></td>
+            </tr>
+          </table>
+        </span>
+
+        <br />
+        <span class="in"
+          >(iv) Average number of workers employed daily. i.e. Man days worked
+          divided by number of days worked. :
+        </span>
+
+        <span>
+          <table>
+            <tr>
+              <td>(a)</td>
+              <td>Adults</td>
+              <td>Men :</td>
+              <td>0</td>
+              <td>Women :</td>
+              <td>0</td>
+              <td>Total :</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>(b)</td>
+              <td>Adolescents</td>
+              <td>Men :</td>
+              <td>123</td>
+              <td>Women :</td>
+              <td>1123</td>
+              <td>Total :</td>
+              <td>123</td>
+            </tr>
+          </table>
+        </span>
+
+        <br />
+        <span class="in"
+          >(v) Total number of man-hours worked including overtime but excluding
+          rest interval. :
+        </span>
+
+        <span>
+          <table>
+            <tr>
+              <td>(a)</td>
+              <td>Adults</td>
+              <td>Men :</td>
+              <td>123</td>
+              <td>Women :</td>
+              <td>1123</td>
+              <td>Total :</td>
+              <td>123</td>
+            </tr>
+            <tr>
+              <td>(b)</td>
+              <td>Adolescents</td>
+              <td>Men :</td>
+              <td>123</td>
+              <td>Women :</td>
+              <td>1123</td>
+              <td>Total :</td>
+              <td>123</td>
+            </tr>
+          </table>
+        </span>
+
+      <p>(vi) In respect of factories carrying on processes declared under section 87:</p>
+      <table>
+        <tr>
+          <th rowspan="2">Name of the dangerous process or operation</th>
+          <th rowspan="2">Average number of persons employed daily</th>
+          <th colspan="4" class="center">Number of persons</th>
+        </tr>
+        <tr>
+          <th>Medically examined (Male)</th>
+          <th>Medically examined (Female)</th>
+          <th>Declared unfit (Male)</th>
+          <th>Declared unfit (Female)</th>
+        </tr>
+      
+        <tr>
+          <td></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+        </tr>
+      </table>
+
+      <p>(vii) In respect of hazardous processes under Section 2(cb):</p>
+      <table>
+        <tr>
+          <th rowspan="2">Name of the hazardous process</th>
+          <th rowspan="2">Average number of persons employed daily</th>
+          <th colspan="4" class="center">Number of persons</th>
+        </tr>
+        <tr>
+          <th>Medically examined (Male)</th>
+          <th>Medically examined (Female)</th>
+          <th>Declared unfit (Male)</th>
+          <th>Declared unfit (Female)</th>
+        </tr>
+  
+        <tr>
+          <td></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+          <td class="center"></td>
+        </tr>
+      </table>
+      </div>
+      <div class="section">
+        <h3>(C) Compliance Status for Health Provisions</h3>
+        <table class="health-table">
+          <tr>
+            <td class="no">1</td>
+            <td class="desc">Measures taken for prevention of dust / fumes generated in the process</td>
+            <td class="status"><%= data.partD.partD_CDE.preventionMeasures %></td>
+          </tr>
+          <tr>
+            <td class="no">2</td>
+            <td class="desc">Provision of wholesome drinking water (Sec. 18, GFR 35 to 40)</td>
+            <td class="status"><%= data.partD.partD_CDE.drinkingWater %></td>
+          </tr>
+          <tr>
+            <td class="no">3</td>
+            <td class="desc">Provision of Urinals, Latrines & Bathrooms facilities separately for men and women (give Number for each) (Sec. 19, GFR 41 to 50)</td>
+            <td class="status"><%= data.partD.partD_CDE.urinalsAndLatrines %></td>
+          </tr>
+          <tr>
+            <td class="no">4</td>
+            <td class="desc">Maintenance of health records in Form No. 20, 32 & 33 (as applicable) (GFR 15, 68 U)</td>
+            <td class="status"><%= data.partD.partD_CDE.healthRecords %></td>
+          </tr>
+          <tr>
+            <td class="no">5</td>
+            <td class="desc">Provision of Occupational Health Center (GFR 68 U)</td>
+            <td class="status"><%= data.partD.partD_CDE.occupationalHealthCenter %></td>
+          </tr>
+          <tr>
+            <td class="no">6</td>
+            <td class="desc">Provision of Factory Medical Officer if applicable (Retainer ship base / Part time / Full time) (GFR 68 U)</td>
+            <td class="status"><%= data.partD.partD_CDE.medicalOfficer %></td>
+          </tr>
+          <tr>
+            <td class="no">7</td>
+            <td class="desc">Number of Industrial Hygienists employed to monitor work, environment as required under Section 7 -A, 112</td>
+            <td class="status"><%= data.partD.partD_CDE.industrialHygienists %></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <h3>(D) Compliance Status for Safety Provisions</h3>
+        <table class="safety-table">
+          <tr><td class="no">1</td><td class="desc">Compliance of safety provisions prescribed under Schedules, including guarding of machinery. (Sec. 21, 22, GFR 54 & 102)</td><td class="status"><%= data.partD.partD_CDE.safetyProvisions %></td></tr>
+          <tr><td class="no">2</td><td class="desc">Whether safe means of access provided to plants & machinery (Sec. 32, 33)</td><td class="status"><%= data.partD.partD_CDE.safeAccess %></td></tr>
+          <tr><td class="no">3</td><td class="desc">Whether emergency fire exits provided (GFR 66A)</td><td class="status"><%= data.partD.partD_CDE.fireExits %></td></tr>
+          <tr><td class="no">4</td><td class="desc">Details of fire fighting equipments including water storage capacity & trained personnel (GFR 66A) & (GFR 102 Schedule-19, Part-3)</td><td class="status"><%= data.partD.partD_CDE.fireFightingEquipment %></td></tr>
+          <tr><td class="no">5</td><td class="desc">Whether hoists, lifts, cranes, lifting tackles & devices are certified by a Competent Person in prescribed forms? (Sec. 28, GFR 58, 59; Sec. 29 GFR 60, 60A)</td><td class="status"><%= data.partD.partD_CDE.hoistsLiftsCertified %></td></tr>
+          <tr><td class="no">6</td><td class="desc">Whether pressure vessels in use are tested and certified by a Competent Person? (Sec. 31, GFR 61, 61A)</td><td class="status"><%= data.partD.partD_CDE.pressureVessels %></td></tr>
+          <tr><td class="no">7</td><td class="desc">Details of personal protective equipment and special safety equipment, if any. (Sec. 41, GFR 102 & 55A)</td><td class="status"><%= data.partD.partD_CDE.protectiveEquipments %></td></tr>
+          <tr><td class="no">8</td><td class="desc">Details of Safety Officers & Safety Supervisors (Sec. 40 B GFR 68-H & 68-S)</td><td class="status"><%= data.partD.partD_CDE.safetyOfficers %></td></tr>
+          <tr><td class="no">9</td><td class="desc">Safety Committee functioning? (if applicable) (GFR 68 F, 68 Y)</td><td class="status"><%= data.partD.partD_CDE.safetyCommittee %></td></tr>
+          <tr><td class="no">10</td><td class="desc">Whether provisions of Chapter-IV A complied with (if covered under Schedule-I framed under Sec. 2cb) (Sec. 41B to 41H)</td><td class="status"><%= data.partD.partD_CDE.chapterIV_A %></td></tr>
+          <tr><td class="no">11</td><td class="desc">Number of Safety programs for training & safety awareness arranged during last year and workers trained through it</td><td class="status"><%= data.partD.partD_CDE.safetyTraining %></td></tr>
+      
+          <!-- Point 12 with sub-points -->
+          <tr>
+            <td class="no">12</td>
+            <td class="desc">
+              <strong>For Major Accident Hazard Factories:</strong>
+              <div class="subpoint">(a) Onsite emergency plan prepared / amended: <%= data.partD.partD_CDE.onsiteEmergencyPlan %></div>
+              <div class="subpoint">(b) Rehearsals done for Onsite Emergency Plan during last year: <%= data.partD.partD_CDE.rehearsalsDone %></div>
+              <div class="subpoint">(c) Details of Safety Policy, Audit & Safety Report: <%= data.partD.partD_CDE.safetyPolicyAudit %></div>
+              <div class="subpoint">(d) Whether information regarding hazards is provided to workers/public: <%= data.partD.partD_CDE.hazardInformation %></div>
+            </td>
+            <td class="status">✓</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <h3>(E) Compliance Status for Welfare Provisions</h3>
+        <table class="provision-table">
+          <tr><td class="no">1</td><td class="desc">Whether first aid facilities are provided as per rules (Sec. 45, GFR 70)</td><td class="status"><%= data.partD.partD_CDE.firstAidFacilities %></td></tr>
+          <tr><td class="no">2</td><td class="desc">Provision of Ambulance Room, required staff, Ambulance Van (if applicable) (Sec. 45, GFR 68 U, 68-V & 71)</td><td class="status"><%= data.partD.partD_CDE.ambulanceProvision %></td></tr>
+          <tr>
+            <td class="no">3</td>
+            <td class="desc">
+              (a) Whether canteen facility provided as per standards if more than 250 workers are employed? (Sec. 46, GFR 72 to 78) : <%= data.partD.partD_CDE.canteenFacility %><br>
+              (b) Is canteen managed/run departmentally or through contractor? <br>
+              <span class="subpoint">Run by: <%= data.partD.partD_CDE.canteenManaged %></span>
+            </td>
+          </tr>
+          <tr><td class="no">4</td><td class="desc">Whether Rest Room and Lunch Rooms are provided? (If more than 150 workers) (Sec. 47, GFR 79)</td><td class="status"><%= data.partD.partD_CDE.restLunchRooms %></td></tr>
+          <tr><td class="no">5</td><td class="desc">Whether creche facilities are provided for use of children of women employees? (If more than 30 women) (Sec. 48, GFR 80 to 83 A)</td><td class="status"><%= data.partD.partD_CDE.crecheFacility %></td></tr>
+          <tr><td class="no">6</td><td class="desc">Whether Welfare Officer is appointed as per the provisions laid down (Sec. 49)</td><td class="status"><%= data.partD.partD_CDE.welfareOfficer %></td></tr>
+        </table>
+      </div>
+      
+      <div class="section">
+        <h3>(F) Compliance Status of Working Hours Provisions</h3>
+        <table class="provision-table">
+          <tr><td class="no">1</td><td class="desc">Compliance with 9 hours/day and 48 hours/week rule (Sec. 51 to 56, GFR 84 to 86)</td><td class="status"><%= data.partD.partD_F.workingHoursCompliance %></td></tr>
+          <tr><td class="no">2</td><td class="desc">Whether notice of period of work is displayed on notice board? (Sec. 61, GFR 87)</td><td class="status"><%= data.partD.partD_F.noticePeriodDisplayed %></td></tr>
+          <tr>
+            <td class="no">3</td>
+            <td class="desc">
+              Shift Timings:<br>
+              <div class="subpoint">1st shift: <%= data.partD.partD_F.firstShiftStart %> to <%= data.partD.partD_F.firstShiftEnd %></div>
+              <div class="subpoint">2nd shift: <%= data.partD.partD_F.secondShiftStart %> to <%= data.partD.partD_F.secondShiftEnd %></div>
+              <div class="subpoint">3rd shift: <%= data.partD.partD_F.thirdShiftStart %> to <%= data.partD.partD_F.thirdShiftEnd %></div>
+              <div class="subpoint">General shift: <%= data.partD.partD_F.generalShiftStart %> to <%= data.partD.partD_F.generalShiftEnd %></div>
+            </td>
+            <td class="status">✓</td>
+          </tr>
+          <tr>
+            <td class="no">4</td>
+            <td class="desc">
+              (a) Normal working time for women workers: 8 hrs <br>
+              <span class="subpoint">If relaxation granted, whether return & transport and security facilities provided? (GFR 91-A)</span>
+            </td>
+            <td class="status"><%= data.partD.partD_F.womenWorkingHoursRelaxation %></td>
+          </tr>
+          <tr>
+            <td class="no">4(b)</td>
+            <td class="desc">Whether certificates of fitness are obtained for employment of young persons (above 14 years) in Form No.5? (Sec. 69)</td>
+            <td class="status"><%= data.partD.partD_F.certificatesOfFitness %></td>
+          </tr>
+        </table>
+      </div>
+<!-- part D - G -->
+      <div class="container">
+        <h3>(G) Compliance status for Annual leave with wages</h3>
+        <p>(a) Whether leave with wages are allowed to the eligible employees (Sec.79)</p><span> <%= data.partD.partD_G.leaveWithWagesAllowed %></span>
+        <p>(b) Total number of workers discharged/dismissed from the service/quit employment / superannuated/died while in service during the previous year NIL</p> <%= data.partD.partD_G.workersDischarged %></span>
+        <p>(c) Number of workers in respect of whom wages in lieu of leave were paid:</p><span> <%= data.partD.partD_G.wagesInLieu %></span>
+    
+        <h5>Leave with Wages</h5>
+    
+        <caption>Total number of workers employed during the year</caption>
+        <table>
+          <!-- <thead>
+            <tr>
+              <th>Adults</th>
+              <th>Men</th>
+              <th>Women</th>
+              <th>Total</th>
+            </tr>
+          </thead> -->
+          <tbody>
+            <tr>
+              <td>Adults</td>
+              <th>Men: </th>
+              <td><%= data.partD.partD_G.directMale %></td>
+              <th>Women</th>
+              <td><%= data.partD.partD_G.directFemale %></td>
+              <th>Total</th>
+              <td><%= data.partD.partD_G.directTotal %></td>
+            </tr>
+            <tr>
+              <td>Young Persons</td>
+              <th>Men: </th>
+              <td><%= data.partD.partD_G.youngDirectMale %></td>
+              <th>Women</th>
+              <td><%= data.partD.partD_G.youngDirectFemale %></td>
+              <th>Total</th>
+              <td><%= data.partD.partD_G.youngDirectTotal %></td>
+            </tr>
+          </tbody>
+        </table>
+        <br/>
+    
+        <caption>Number of workers who were entitled to annual leave with wages during the year</caption>
+        <table>
+          <!-- <thead>
+            <tr>
+              <th></th>
+              <th>Men</th>
+              <th>Women</th>
+              <th>Total</th>
+            </tr>
+          </thead> -->
+          <tbody>
+            <tr>
+              <td>Adults</td>
+              <th>Men</th>
+              <td><%= data.partD.partD_G.entitledMale %></td>
+              <th>Women</th>
+              <td><%= data.partD.partD_G.entitledFemale %></td>
+              <th>Total</th>
+              <td><%= data.partD.partD_G.entitledTotal %></td>
+            </tr>
+            <tr>
+              <td>Young Persons</td>
+              <th>Men: </th>
+              <td><%= data.partD.partD_G.youngEntitledMale %></td>
+              <th>Women</th>
+              <td><%= data.partD.partD_G.youngEntitledFemale %></td>
+              <th>Total</th>
+              <td><%= data.partD.partD_G.youngEntitledTotal %></td>
+            </tr>
+          </tbody>
+        </table>
+    
+        <br/>
+        <caption>Number of workers who were granted annual leave with wages during the year</caption>
+        <table>
+          <!-- <thead>
+            <tr>
+              <th></th>
+              <th>Men</th>
+              <th>Women</th>
+              <th>Total</th>
+            </tr>
+          </thead> -->
+          <tbody>
+            <tr>
+              <td>Adults</td>
+              <th>Men</th>
+              <td><%= data.partD.partD_G.grantedMale %></td>
+              <th>Women</th>
+              <td><%= data.partD.partD_G.grantedFemale %></td>
+              <th>Total</th>
+              <td><%= data.partD.partD_G.grantedTotal %></td>
+            </tr>
+            <tr>
+              <tr>
+                <td>Young Persons</td>
+                <th>Men: </th>
+                <td><%= data.partD.partD_G.youngGrantedMale %></td>
+                <th>Women</th>
+                <td><%= data.partD.partD_G.youngGrantedFemale %></td>
+                <th>Total</th>
+                <td><%= data.partD.partD_G.youngGrantedTotal %></td>
+              </tr>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <br/>
+      
+      <div class="container">
+        <h3>(H) Reporting of accidents to Factory Inspectorate</h3>
+        <p>(1) Whether arrangements are made to report the accidents involving more than 48 hours absence including injuries and Fatal to Factory Inspectorate in Form No.21 (Sec.88, GFR103): 0</p>
+    
+        <p>(2) Number of Accidents and Dangerous Occurrences during Previous year: 0</p>
+    
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="3">Sl. No.</th>
+              <th rowspan="3">Accident / Occurrence</th>
+              <th colspan="3">Only non-fatal injuries</th>
+              <th colspan="5">Fatal injuries as well as non-fatal injuries</th>
+            </tr>
+            <tr>
+              <th rowspan="2">Number of Persons injured inside the factory</th>
+              <th rowspan="2">Persons injured outside</th>
+              <th rowspan="2">Medical Officer treated</th>
+              <th colspan="2">Number of Persons injured</th>
+              <th colspan="2">Number of Persons Killed</th>
+            </tr>
+            <tr>
+              <th>Inside the factory</th>
+              <th>Outside</th>
+              <th>Inside the factory</th>
+              <th>Outside</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Accidents including dangerous occurrences and major accidents involving injuries/deaths</td>
+              <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Dangerous occurrence not involving injuries/deaths</td>
+              <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Dangerous occurrence involving injuries/deaths</td>
+              <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Major accident involving injuries/deaths</td>
+              <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Major accident not involving injuries/deaths</td>
+              <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+          </tbody>
+        </table>
+    
+        <p>(3) Injuries occurring inside the factory during the previous year.</p>
+    
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">Type of Accident</th>
+              <th colspan="3">Hazardous Process under Section 2(cb)</th>
+              <th colspan="3">Dangerous operations under Section 87</th>
+              <th colspan="3">Other</th>
+            </tr>
+            <tr>
+              <th>Accident</th>
+              <th>Fatal</th>
+              <th>Non-fatal</th>
+              <th>Accident</th>
+              <th>Fatal</th>
+              <th>Non-fatal</th>
+              <th>Accident</th>
+              <th>Fatal</th>
+              <th>Non-fatal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Number of injuries</td>
+              <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+            </tr>
+          </tbody>
+        </table>
+    
+        <p>(4) (i) Non-fatal injuries (workers injured during the year in which injured workers returned to work during the year): 0</p>
+    
+        <p>(ii) Number of injuries: 0</p>
+        <p>(iii) Manday lost due to injuries: 0</p>
+    
+        <p>(5) (i) Non-fatal injuries (workers injured) occurring in the previous year in which injured workers returned to work during the current year: 0</p>
+    
+        <p>(ii) Number of injuries: 0</p>
+        <p>(iii) Manday lost due to injuries (This should be the total manday lost during the previous year as well as in the current year.): 0</p>
+    
+        <p>Place: _____________</p>
+        <p>Date: ______________</p>
+    
+        <p style="text-align:right; margin-top:40px;">
+          Manager/Owner/Partner<br>
+          Name of The Applicant Establishment
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

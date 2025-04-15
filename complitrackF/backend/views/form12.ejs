@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form XII - Contractor Register</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      h2,
+      h3 {
+        text-align: center;
+      }
+      p {
+        font-size: 14px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        /* background-color: #f2f2f2; */
+      }
+    </style>
+  </head>
+  <body>
+    <h2>FORM XII</h2>
+    <h3>(See Rule 74)</h3>
+    <h3>Register of Particulars of Contractors</h3>
+
+    <p>
+      <b>1. Name and Address of the Principal Employer:</b>
+      <%=company.employer_name%>,<%=company.employer_address%>
+    </p>
+    <p>
+      <b>2. Name and Address of the Establishment:</b> <%= company.company_name
+      %>,<%=company.address%>
+    </p>
+    <!-- <p>
+      <b>3. Nature of Business:</b> <%= company.nature_of_work || 'N/A' %>
+    </p>
+    <p>
+      <b>4. Establishment Details:</b> <%= company.establishment_details ||
+      'N/A' %>
+    </p> -->
+
+    <table>
+      <tr>
+        <th>Sl. No.</th>
+        <th>Name and Address of Contractor</th>
+        <th>Nature of work on contract</th>
+        <th>Location of Contract Work</th>
+        <th colspan="2">Period of Contract</th>
+        <th>Max. No. of Workmen Employed by contract</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>From</th>
+        <th>To</th>
+        <th></th>
+      </tr>
+      <% contractors.forEach((contractor, index) => { %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td>
+          <%= contractor.contractor_name %> <br />
+          <%= contractor.contractor_address %>
+        </td>
+        <td><%= contractor.nature_of_work %></td>
+        <td><%= contractor.location_of_work || 'N/A' %></td>
+        <td><%= contractor.contract_start_date %></td>
+        <td><%= contractor.contract_end_date %></td>
+        <td><%= contractor.total_workers %></td>
+      </tr>
+      <% }); %>
+    </table>
+  </body>
+</html>

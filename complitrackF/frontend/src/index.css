@@ -1,0 +1,932 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  margin-top: 60px;
+  width: 100%;
+  height: 100vh;
+}
+
+/* navbar css */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1e293b;
+  color: white;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 1000;
+}
+
+.navbar-left {
+  font-size: 20px;
+  margin-left: 50px;
+}
+
+.navbar-right {
+  font-size: 16px;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  /* background-color: #1a1a1a; */
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Sidebar  */
+.sidebarWrapper {
+  width: 17%;
+  background-color: rgb(231, 226, 226);
+  height: 100vh;
+  position: fixed;
+  top: 60px;
+  left: 0;
+}
+
+.sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 17%;
+  height: calc(100vh - 60px);
+
+  background-color: rgb(243, 237, 237);
+
+  padding: 15px;
+  overflow-y: auto;
+
+  box-shadow: 3px 0 8px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease-in-out;
+}
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent; /* Minimalist track */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #1e293b; /* Semi-transparent thumb */
+  border-radius: 10px; /* Rounded edges */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 100, 100, 0.8); /* Darker on hover */
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  color: #060606;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background 0.2s ease-in-out;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: #1e293b;
+  color: white;
+}
+
+/* sidebar end */
+
+/* sidebar open close css */
+.sidebar.closed {
+  width: 50px; /* Sidebar collapses, but toggle button remains visible */
+  overflow: hidden;
+  background-color: white;
+  box-shadow: none;
+}
+.toggle-sidebar-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+  overflow: visible;
+}
+
+/* Dropdown Button for sidebar */
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  font-size: 16px;
+  padding: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+.dropdown-btn:hover {
+  background-color: #1e293b;
+  color: white;
+}
+
+.icon {
+  transition: transform 0.3s ease-in-out;
+  margin-left: auto;
+}
+
+.rotate-down {
+  transform: rotate(180deg);
+}
+
+.rotate-up {
+  transform: rotate(0deg);
+}
+
+/* Dropdown Content */
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+.dropdown-content a {
+  margin-top: 5px;
+  padding: 8px 10px;
+  font-size: 14px;
+  color: #040404;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background: #1e293b;
+  color: white;
+}
+
+/* Content Area  */
+.content {
+  width: 80%;
+
+  padding: 20px;
+  overflow-y: auto;
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+}
+/* =========== Right Content Section =========== */
+.right-content {
+  width: 100%;
+  padding: 30px;
+  background: #fff;
+  border-radius: 8px;
+
+  margin-left: 17%;
+
+  overflow-x: hidden;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.right-content.full-width {
+  margin-left: 60px; /* Adjusted for sidebar collapsed state */
+}
+
+/* Display Container */
+.display-container h2 {
+  font-size: 20px;
+  color: #333;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+/* Upload Section in right side main content*/
+.upload-section {
+  display: flex;
+  margin-top: 25px;
+  flex-direction: row; /* Stack elements vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically (if needed) */
+  gap: 15px; /* Space between elements */
+  width: 100%;
+  text-align: center;
+}
+
+.file-input-container {
+  /* display: flex; */
+  flex-direction: row; /* Labels on top */
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.file-input-container label {
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 5px; /* Space between label and input */
+}
+
+.file-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 250px;
+  text-align: center;
+}
+
+.upload-btn {
+  background-color: #1e293b;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.upload-btn:hover {
+  transition: all 0.3s ease-in-out;
+  background: #f54336;
+}
+
+/* =========== Table Styling =========== */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  /* Enable scrolling on small screens */
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: #3b1e27 #f1f1f1;
+}
+
+/* For Webkit browsers (Chrome, Safari, etc.) */
+.table-container::-webkit-scrollbar {
+  margin-top: 5px;
+  width: 2px;
+  /* Adjust the width of the scrollbar */
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* Background of the track */
+  border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #007bff;
+  /* Color of the thumb (scroll handle) */
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  /* Smooth transition */
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #0056b3;
+  /* Darker color when hovering */
+}
+
+.table-data {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border: none;
+  border-collapse: separate;
+  border-spacing: 1px;
+  /* Adjust the spacing between cells */
+}
+
+.table-data th,
+.table-data td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  /* text-align: left;s */
+  white-space: nowrap;
+  border: none;
+  text-align: center;
+
+  /* Prevents text wrapping */
+}
+
+.table-data th {
+  background: #1e293b;
+  color: white;
+}
+
+.table-data tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* Action Buttons */
+.edit-btn,
+.delete-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background: #28a745;
+  color: white;
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #218838;
+}
+
+.delete-btn:hover {
+  background: #c82333;
+}
+
+.error {
+  color: red;
+  font-weight: 600;
+}
+
+/* Login.css */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background: linear-gradient(135deg, #667eea, #764ba2); */
+}
+
+.login-box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.login-box:hover {
+  /* transform: scale(1.05); */
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background: #1e293b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.login-button:hover {
+  background: #033585;
+  transform: scale(1.05);
+}
+
+.forgot-password {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #444;
+}
+
+.forgot-password a {
+  color: #1e293b;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.forgot-password a:hover {
+  color: #1e293b;
+  text-decoration: underline;
+}
+/* Default Button Style */
+.submit-btn {
+  background: #007bff; /* Default blue */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.5s ease-in-out, color 0.3s ease-in-out;
+  height: 45px; /* ✅ Keeps height fixed */
+  min-width: 180px; /* ✅ Prevents shrinking */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Loading state: Background transition moves like a progress bar */
+.submit-btn.loading {
+  background: linear-gradient(90deg, #0056b3, #007bff, #0099ff);
+  background-size: 200% 100%;
+  animation: loadingProgress 2s infinite linear; /* ✅ Moves background from left to right */
+  cursor: not-allowed;
+}
+
+/* Background transition effect */
+@keyframes loadingProgress {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* logout button */
+.logout-button {
+  background-color: #f44336; /* Red color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-left: 15px;
+  border-radius: 5px;
+}
+
+.logout-button:hover {
+  transition: all 0.3s ease-in-out;
+  background-color: white; /* Darker red on hover */
+  color: #1e293b;
+}
+/* Overlay to darken background */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 1000px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow-y: auto; /* Make the form scrollable */
+  max-height: 80vh; /* Limit max height of the modal */
+}
+
+/* Title styling */
+.modal-content h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Form styling */
+.edit-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns for larger screens */
+  gap: 20px;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Input field group */
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Buttons container */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Update and Cancel buttons */
+.update-btn,
+.cancel-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.update-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #ff6f61;
+  color: white;
+}
+
+.pdf-preview {
+  margin-top: 25px;
+}
+
+/* annual return form css */
+
+.form-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.form-header {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.take-input {
+  /* display: flex; */
+  gap: 10px;
+
+  /* margin-bottom: 15px; */
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+/* 
+.form-row .form-group {
+  flex: 1 2 calc(50% - 10px);
+} */
+
+.submit-btn {
+  background-color: #1e293b;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 15%;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.submit-btn:hover {
+  background-color: #f54336;
+}
+
+.upload-section select,
+.upload-section input[type="month"] {
+  width: 25%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #1e293b;
+  border-radius: 5px;
+  outline: none;
+  background: #fff;
+  transition: 1ms;
+  text-align: center;
+  cursor: pointer;
+}
+
+.upload-section input[type="month"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* wizard form css for the annual return */
+/* .form-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+} */
+/* ✅ Progress Bar */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #007bff;
+  border-radius: 5px;
+  transition: width 0.4s ease-in-out;
+}
+
+/* ✅ Step Indicator */
+.step-indicator {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #333;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* ✅ Form Navigation */
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+  background-color: #1e293b;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #f54336;
+  transform: scale(1.02);
+}
+
+.btn-secondary {
+  background-color: #39e236;
+  color: black;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  transform: scale(1.02);
+}
+
+/* ✅ Smooth Fade-in Animation */
+.form-step {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.3s forwards ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* end  */
+
+/* Mobile-first approach */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .form-group {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+  .edit-form {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-content h2 {
+    font-size: 18px;
+  }
+  .input-group input {
+    font-size: 14px;
+    padding: 10px;
+  }
+  .modal-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .update-btn,
+  .cancel-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    width: 98%;
+  }
+  .modal-content h2 {
+    font-size: 16px;
+  }
+  .input-group input {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
+
+/* Responsive Layout */
+@media (max-width: 992px) {
+  .main {
+    flex-direction: column;
+  }
+  .right-content {
+    padding: 20px;
+    width: 100%;
+  }
+  .sidebarWrapper {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    padding: 10px;
+  }
+  .content {
+    width: 100%;
+    padding: 10px;
+  }
+  .upload-section {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .file-input {
+    width: 100%;
+  }
+  .table-container {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .right-content {
+    padding: 15px;
+    margin-top: 70px;
+  }
+  .display-container h2 {
+    font-size: 18px;
+  }
+  .table-data {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    white-space: nowrap;
+  }
+  .table-data th,
+  .table-data td {
+    padding: 8px;
+    font-size: 14px;
+  }
+  .edit-btn,
+  .delete-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .right-content {
+    padding: 10px;
+    margin-top: 80px;
+  }
+  .sidebarWrapper {
+    display: none;
+  }
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  .table-data th,
+  .table-data td {
+    padding: 6px;
+    font-size: 12px;
+  }
+  .upload-section {
+    flex-direction: column;
+  }
+  .upload-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
