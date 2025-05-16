@@ -62,7 +62,7 @@ const FormNo12Pdf = () => {
         <div className="form-container">
             <center>
 
-                <h4>Form No. 12 PDF Viewer</h4>
+                <h4>Form No. 12 - Generate Contractor Details</h4>
             </center>
 
 

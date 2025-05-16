@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form of Notification of Vacancies</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      margin: 40px;
+    }
+    h2, h3 {
+      text-align: center;
+      margin: 0;
+    }
+    .section {
+      margin-top: 25px;
+    }
+    .field-row {
+      margin-top: 8px;
+    }
+    .field-label {
+      font-weight: bold;
+    }
+    .field-label::after {
+      content: ": ";
+    }
+    .signature-area {
+      margin-top: 60px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .signature-area div {
+      width: 45%;
+    }
+  </style>
+</head>
+<body>
+  <h2>Form of Notification of Vacancies</h2>
+  <h3>(See Rule: 4)</h3>
+
+  <div class="section">
+    <div class="field-row"><span class="field-label">1. Name and address of Employer</span><%= data.employer_name %>, <%= data.employer_address %></div>
+    <div class="field-row"><span class="field-label">2. Telephone Number of the Employer, if any</span><%= data.telephone %></div>
+    <div class="field-row"><span class="field-label">3. Nature of Vacancy</span><%= data.vacancy_nature %></div>
+    <div class="field-row"><span class="field-label">3(a) Type of Workers required (Designation)</span><%= data.worker_type %></div>
+    <div class="field-row"><span class="field-label">3(b) Description of duties</span><%= data.duties_description %></div>
+    <div class="field-row"><span class="field-label">3(c)(i) Essential Qualification</span><%= data.essential_qualification %></div>
+    <div class="field-row"><span class="field-label">3(c)(ii) Desirable Qualification</span><%= data.desirable_qualification %></div>
+    <div class="field-row"><span class="field-label">3(d) Age limits, if any</span><%= data.age_limit %></div>
+    <div class="field-row"><span class="field-label">3(e) Whether women are eligible</span><%= data.women_eligible %></div>
+
+    <div class="field-row"><span class="field-label">4(a) Number of Regular Vacancies</span><%= data.regular_vacancies %></div>
+    <div class="field-row"><span class="field-label">4(b) Number of Temporary Vacancies</span><%= data.temporary_vacancies %></div>
+
+    <div class="field-row"><span class="field-label">5. Pay and allowance</span><%= data.pay_allowance %></div>
+    <div class="field-row"><span class="field-label">6. Place of work (Town / Village / District)</span><%= data.work_place %></div>
+    <div class="field-row"><span class="field-label">7. Probable date by which vacancy will be filled</span><%= data.probable_filling_date %></div>
+
+    <div class="field-row"><span class="field-label">8(a) Date of interview/test</span><%= data.interview_date %></div>
+    <div class="field-row"><span class="field-label">8(b) Time of interview/test</span><%= data.interview_time %></div>
+    <div class="field-row"><span class="field-label">8(c) Place of interview/test</span><%= data.interview_place %></div>
+    <div class="field-row"><span class="field-label">8(d) Person to whom applicants should report</span><%= data.report_to %></div>
+
+    <div class="field-row"><span class="field-label">9(1) Scheduled Caste</span><%= data.sc_vacancies %></div>
+    <div class="field-row"><span class="field-label">9(2) Scheduled Tribe</span><%= data.st_vacancies %></div>
+    <div class="field-row"><span class="field-label">9(3) Ex-Service men</span><%= data.exservicemen_vacancies %></div>
+    <div class="field-row"><span class="field-label">9(4) Physically Handicapped</span><%= data.ph_vacancies %></div>
+    <div class="field-row"><span class="field-label">9(5) Other</span><%= data.other_vacancies %></div>
+    <div class="field-row"><span class="field-label">Total Vacancies</span><%= data.total_vacancies %></div>
+
+    <div class="field-row" style="margin-top: 20px;"><strong>9.2</strong> The vacancies shall be re-notified in writing to the appropriate Employment Exchange if there is any change in the particulars already furnished to the Employment Exchange under sub-rule (1).</div>
+
+    <div class="field-row" style="margin-top: 12px;"><span class="field-label">10. Any other relevant information</span><%= data.other_information %></div>
+  </div>
+
+  <div class="signature-area">
+    <div>
+      <!-- <strong>Date:</strong> <%= data.updatedAt %> -->
+      <strong>Date:</strong> <%= new Date(data.updatedAt).toISOString().split("T")[0] %>
+
+    </div>
+    <div style="text-align: right;">
+      <strong>Signature of Employer:</strong><br><br>
+      __________
+    </div>
+  </div>
+</body>
+</html>

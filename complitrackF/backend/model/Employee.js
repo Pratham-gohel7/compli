@@ -50,7 +50,7 @@ const sequelize = require("../config/database");
 const Company = require("./Company"); // Import the Company model
 
 const Employee = sequelize.define("employee", {
-  employee_id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+  employee_id: { type: DataTypes.INTEGER, primaryKey: true, required: true },
   company_id: {
     type: DataTypes.INTEGER,
     allowNull: false,

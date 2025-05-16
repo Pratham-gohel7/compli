@@ -82,8 +82,8 @@ const FormNo15Pdf = () => {
         alert("Error generating PDF");
       }
     } catch (error) {
-      console.error("❌ Error generating PDF:", error);
-      alert("Error generating PDF");
+      console.error("❌ Error generating PDF Or Data Does not exists", error);
+      alert("Data Does not exists");
     } finally {
       setTimeout(() => setLoading(false), 1000); // ✅ Simulate loading delay
     }
@@ -96,7 +96,7 @@ const FormNo15Pdf = () => {
     <div className="form-container">
       <center>
 
-        <h4>Form 15 </h4>
+        <h4>Form 15 - Generate Adult worker Details </h4>
       </center>
       <div className="upload-section">
         <label>Select Company:</label>

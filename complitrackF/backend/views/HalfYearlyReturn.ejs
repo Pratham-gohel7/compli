@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Form No. 25 - Half Yearly Return</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      color: #000;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+    }
+
+    .top-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .info-section {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .left-section {
+      width: 60%;
+    }
+
+    .right-section {
+      width: 35%;
+      text-align: left;
+    }
+
+    .left-section ol {
+      padding-left: 20px;
+    }
+
+    .left-section li {
+      margin-bottom: 10px;
+    }
+
+    .dynamic-field {
+      font-weight: bold;
+      display: inline-block;
+      min-width: 150px;
+      padding: 0 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-header">
+    <h2>Form No. 25</h2>
+    <h3>(Prescribed under Clause (2) of Rule 107)</h3>
+    <h3>Half Yearly Return</h3>
+    <h3>For the half year ending June <span><%= new Date(data.reporting_period).getFullYear() %></span></h3>
+  </div>
+  <div style="text-align: right; white-space: nowrap; padding-left: 20px; font:bold">
+    <p>Registration number: <%= data.registration_number %></p>
+    <p>Licence number: <%= data.license_number %></p>
+    <p>*NIC Code number: <%= data.nic_code %></p>
+    <p>(As given in the licence)</p>
+  </div>
+
+<div class="info-section" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px;">
+  <div class="left-section" style="width: 60%;">
+    <ol>
+      <li>Name of factory: <span class="dynamic-field"><%= data.factory_name %></span></li>
+      <li>Name of Occupier: <span class="dynamic-field"><%= data.occupier_name %></span></li>
+      <li>Name of Manager: <span class="dynamic-field"><%= data.manager_name %></span></li>
+      <li>District: <span class="dynamic-field"><%= data.district %></span></li>
+      <li>
+        Full postal address of the factory (including PIN Code): 
+        <span class="dynamic-field">  <%= data.postal_address %></span>
+      </li>
+    </ol>
+  </div>
+
+    <ol start="6">
+        <li>
+          Industry
+          <ol type="a">
+            <li>Nature of Industry:<br>
+              <span class="dynamic-field"><%= data.industry_nature %></span>
+              <br><small>(See explanatory note-1)</small>
+            </li>
+            <li>Sector Industry (Mention whether establishment belong to public or private sector):<br>
+              <span class="dynamic-field"><%= data.industry_sector %></span>
+              <br><small>(See explanatory note-2)</small>
+            </li>
+            <li>
+              Section of the Act under which the Factory is covered (please tick √ the appropriate box):<br>
+              2(m)(i): <span class="dynamic-field">
+                <%= data.applicable_clauses.includes('2(m)(i)') ? 'Yes' : 'No' %>
+              </span><br>
+              2(m)(ii): <span class="dynamic-field">
+                <%= data.applicable_clauses.includes('2(m)(ii)') ? 'Yes' : 'No' %>
+              </span><br>
+              Section 85: <span class="dynamic-field">
+                <%= data.applicable_clauses.includes('Section 85') ? 'Yes' : 'No' %>
+              </span>
+            </li>
+          </ol>
+        </li>
+  
+        <li>
+          Number of days factory worked during the half year ending 30th June <span><%= new Date(data.reporting_period).getFullYear() %></span>:
+          <span class="dynamic-field">  <%= data.factory_work_days %></span>
+        </li>
+  
+        <li>
+          Number of mandays worked during the half year ending 30th June <span><%= new Date(data.reporting_period).getFullYear() %></span></span>:
+          <ol type="a">
+            <li>
+              Adults
+              <ol type="i">
+                <li>Men: <span class="dynamic-field"><%= data.mandays_adults_male %></span></li>
+                <li>Women: <span class="dynamic-field"><%= data.mandays_adults_female %></span></li>
+              </ol>
+            </li>
+            <li>
+              Adolescents
+              <ol type="i">
+                <li>Male: <span class="dynamic-field"><%= data.mandays_adolescents_male %></span></li>
+                <li>Women: <span class="dynamic-field"><%= data.mandays_adolescents_female %></span></li>
+              </ol>
+            </li>
+            <li>
+              Children
+              <ol type="i">
+                <li>Boys: <span class="dynamic-field"><%= data.mandays_children_male %></span></li>
+                <li>Girls: <span class="dynamic-field"><%= data.mandays_children_female %></span></li>
+              </ol>
+            </li>
+          </ol>
+          <strong>Total: <span class="dynamic-field"><%= data.mandays_total %></span></strong>
+        </li>
+      </ol>
+
+      <ol start="9">
+        <li>
+          Average number of workers employed daily <small>(See explanatory note-3)</small>:
+          <ol type="a">
+            <li>
+              Adults
+              <ol type="i">
+                <li>Men: <span class="dynamic-field"><%= data.avg_workers_adults_male %></span></li>
+                <li>Women: <span class="dynamic-field"><%= data.avg_workers_adults_female %></span></li>
+              </ol>
+            </li>
+            <li>
+              Adolescents
+              <ol type="i">
+                <li>Male: <span class="dynamic-field"><%= data.avg_workers_adolescents_male %></span></li>
+                <li>Women: <span class="dynamic-field"><%= data.avg_workers_adolescents_female %></span></li>
+              </ol>
+            </li>
+            <li>
+              Children
+              <ol type="i">
+                <li>Boys: <span class="dynamic-field"><%= data.avg_workers_children_male %></span></li>
+                <li>Girls: <span class="dynamic-field"><%= data.avg_workers_children_female %></span></li>
+              </ol>
+            </li>
+          </ol>
+          <strong>Total: <span class="dynamic-field"><%= data.avg_workers_total %></span></strong>
+        </li>
+  
+        <li>
+          Medical Information:
+          <ol type="a">
+            <li>
+              Total number of workers employed in hazardous processes:
+              <span class="dynamic-field">  <%= data.hazardous_process_workers %></span>
+            </li>
+            <li>
+              Name of the hazardous agents:
+              <span class="dynamic-field">  <%= data.hazardous_agents %></span>
+            </li>
+            <li>
+              Number of medical officers employed:
+              <ol type="i">
+                <li>Full time: <span class="dynamic-field"><%= data.medical_officers_fulltime %></span></li>
+                <li>Part time: <span class="dynamic-field"><%= data.medical_officers_parttime %></span></li>
+              </ol>
+            </li>
+            <li>
+              Number of workers examined by Factory Medical Officer:
+              <ol type="i">
+                <li>Workers working in hazardous process: <span class="dynamic-field"><%= data.workers_examined_hazardous %></span></li>
+                <li>Others: <span class="dynamic-field"><%= data.workers_examined_others %></span></li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+  
+    <div style="margin-top: 60px; display: flex; justify-content: space-between;">
+      <div>
+        Date: <span class="dynamic-field"><%= data.reporting_period %></span>
+      </div>
+      <div style="text-align: right;">
+        Signature of Manager<br><br><br>
+        Name (in block letters): <span class="dynamic-field">_______________</span>
+      </div>
+
+      <hr style="margin-top: 60px;">
+
+  <div class="explanatory-section">
+    <p><strong>*National Industrial Classification (NIC)</strong></p>
+    <p><strong>Explanatory Notes:</strong></p>
+
+    <ol>
+      <li>
+        Mention what is actually manufactured, including repairs of all types, following NIC Code at the four-digit level.
+      </li>
+      <li>
+        Establishment in ‘public sector’ means an establishment owned, controlled or managed by:
+        <ol type="i">
+          <li>The Government or the Department</li>
+          <li>A Government Company as defined in Section 617 of the Companies Act, 1956</li>
+          <li>A Corporation established by or under Central, Provincial or State Act, which is owned, controlled or managed by the Government</li>
+          <li>A Local Authority</li>
+        </ol>
+        Establishment in ‘Cooperative Sector’ means an establishment managed by a Co-operative Society registered under the Cooperative Societies Act, 1912.
+      </li>
+      <li>
+        (i) Working day should be taken to be the day on which the establishment actually worked and manufacturing process was carried on, including maintenance and repair work on closed days. Days on which the factory was closed for any reason or when no manufacturing was done should not be treated as working days.
+        <br><br>
+        (ii) For seasonal factories, information about working season and offseason should be given separately.
+      </li>
+    </ol>
+    <ol start="4">
+        <li>
+          Mandays worked should be the aggregate number of attendance of all the workers, covered under the Act, in all shifts on all the working days in reckoning attendance, should be counted and all employees should be included, whether they are employed directly or under contractors (Apprentices, who are not covered under the Apprentices Act, 1961, are also to be included). Attendance on separate shifts (e.g. night and days shifts) should be counted separately. Partial attendance for less than half a shift on a working day should be ignored while attendance for a half shift or more on such day should be treated as full attendance.
+        </li>
+        <li>
+          The average daily number should be calculated by dividing the aggregate number of attendance (mandays worked) on working days by the number of working days during the half year.
+        </li>
+      </ol>
+    
+      <p>
+        <strong>*Section 2(12) of E.S.I. Act, 1948 defines "Seasonal Factory" as follows:</strong><br>
+        'Seasonal Factory' means a factory which is exclusively engaged in one or more of the following manufacturing processes, namely cotton ginning, cotton or jute pressing, decertification of groundnuts, the manufacture of coffee, indigo, lac. rubber, sugar (including gur) or tea or any manufacturing process which is engaged for a period of not exceeding seven months in a year –
+      </p>
+    
+      <ol type="a">
+        <li>in any process of blending, packing or re-packing of tea or coffee; or</li>
+        <li>in such other manufacturing process as the Central Government may, by notification in the Official Gazette, specify:</li>
+      </ol>
+    
+      <p>
+        The expression ‘manufacturing process’ and ‘power’ shall have the meaning respectively assigned to them in the Factories Act, 1948 (63 of 1948).
+      </p>
+    
+      <p><strong>*National Industrial Classification (NIC).</strong></p>
+  </div>
+
+  </div>
+
+</body>
+</html>

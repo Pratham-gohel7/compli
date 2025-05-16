@@ -270,7 +270,7 @@ const AnnualReturnViewer = () => {
 
     return (
         <div style={{ padding: "20px", maxWidth: "800px", margin: "auto" }}>
-            <h1>Annual Return Report Viewer</h1>
+            <h1>Generate Annual Return Report</h1>
 
             <div style={{ marginBottom: "1rem" }}>
                 <label>Select Company: </label>

@@ -40,7 +40,8 @@ export const FormProvider = ({ children }) => {
             totalWorkingDays: "",
             totalManDays: "",
             avgEmployees: "",
-            totalWages: "",
+            totalWagesMan: "",
+            totalWagesWomen: "",
             totalFine: "",
             otherDeductions: ""
         },
@@ -180,31 +181,90 @@ export const FormProvider = ({ children }) => {
                 youngGrantedTotal: ""
             },
             partD_H: {
-                // Section H - Reporting of Accidents
+                // Section (1)
                 accidentReporting: "Yes",
                 
-                // Table 1: Number of Accidents and Dangerous Occurrences
+                // Section (2) - Accidents Table
                 accidentsTable: [
-                    ["", "", "", "", "", "", "", ""], // Row 1
-                    ["", "", "", "", "", "", "", ""], // Row 2
-                    ["", "", "", "", "", "", "", ""], // Row 3
-                    ["", "", "", "", "", "", "", ""], // Row 4
-                    ["", "", "", "", "", "", "", ""]  // Row 5
+                    {
+                        category: "Accidents including dangerous occurrences and major accidents involving injuries/deaths.",
+                        accidentsOccurrences: 0,
+                        injuredInside: 0,
+                        injuredOutside: 0,
+                        fatalAccidents: 0,
+                        fatalInjuredInside: 0,
+                        fatalInjuredOutside: 0,
+                        fatalKilledInside: 0,
+                        fatalKilledOutside: 0
+                    },
+                    {
+                        category: "Dangerous occurrences not involving injuries/deaths.",
+                        accidentsOccurrences: 0,
+                        injuredInside: 0,
+                        injuredOutside: 0,
+                        fatalAccidents: 0,
+                        fatalInjuredInside: 0,
+                        fatalInjuredOutside: 0,
+                        fatalKilledInside: 0,
+                        fatalKilledOutside: 0
+                    },
+                    {
+                        category: "Dangerous occurrences involving injuries/deaths.",
+                        accidentsOccurrences: 0,
+                        injuredInside: 0,
+                        injuredOutside: 0,
+                        fatalAccidents: 0,
+                        fatalInjuredInside: 0,
+                        fatalInjuredOutside: 0,
+                        fatalKilledInside: 0,
+                        fatalKilledOutside: 0
+                    },
+                    {
+                        category: "Major accidents involving injuries/deaths.",
+                        accidentsOccurrences: 0,
+                        injuredInside: 0,
+                        injuredOutside: 0,
+                        fatalAccidents: 0,
+                        fatalInjuredInside: 0,
+                        fatalInjuredOutside: 0,
+                        fatalKilledInside: 0,
+                        fatalKilledOutside: 0
+                    },
+                    {
+                        category: "Major accidents not involving injuries/deaths.",
+                        accidentsOccurrences: 0,
+                        injuredInside: 0,
+                        injuredOutside: 0,
+                        fatalAccidents: 0,
+                        fatalInjuredInside: 0,
+                        fatalInjuredOutside: 0,
+                        fatalKilledInside: 0,
+                        fatalKilledOutside: 0
+                    }
                 ],
                 
-                // Table 2: Injuries Inside the Factory
-                injuriesTable: [
-                    ["", "", "", "", "", "", "", "", ""], // Row 1
-                    ["", "", "", "", "", "", "", "", ""], // Row 2
-                    ["", "", "", "", "", "", "", "", ""], // Row 3
-                    ["", "", "", "", "", "", "", "", ""]  // Row 4
-                ],
+                // Section (3) - Injuries Table
+                injuriesTable: Array(5).fill({
+                    hazardousProcessAccidents: 0,
+                    hazardousProcessFatal: 0,
+                    hazardousProcessNonfatal: 0,
+                    dangerousOperationsAccidents: 0,
+                    dangerousOperationsFatal: 0,
+                    dangerousOperationsNonfatal: 0,
+                    otherAccidents: 0,
+                    otherFatal: 0,
+                    otherNonfatal: 0
+                }),
                 
-                // Nonfatal Injuries Section
-                nonfatal_injuries_same_year: "",
-                mandays_lost: "",
-                nonfatal_injuries_prev_year: "",
-                mandays_lost_prev_year: ""
+                // Section (4) - Nonfatal Injuries
+                nonfatalInjuriesCurrentYear: {
+                    numberOfInjuries: 0,
+                    mandaysLost: 0
+                },
+                nonfatalInjuriesPreviousYear: {
+                    numberOfInjuries: 0,
+                    mandaysLost: 0
+                },
             }
         }
     };

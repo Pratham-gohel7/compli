@@ -47,7 +47,7 @@ const FormNo28Pdf = () => {
         <div className="form-container">
             <center>
 
-                <h4>Form No-28</h4>
+                <h4>Form No-28 - Generate Attendance</h4>
             </center>
 
             <div className="upload-section">

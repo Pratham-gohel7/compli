@@ -21,9 +21,17 @@ const PartA = ({ formData, handleChange }) => {
                 <input type="text" name="avgEmployees" value={formData?.avgEmployees || ""} onChange={handleChange} />
             </div>
 
-            <div className="form-group">
+            {/* <div className="form-group">
                 <label>Total wages paid category-wise:</label>
                 <input type="text" name="totalWages" value={formData?.totalWages || ""} onChange={handleChange} />
+            </div> */}
+            <div className="form-group">
+                <label>Total wages paid category-wise: man</label>
+                <input type="text" name="totalWagesMan" value={formData?.totalWagesMan || ""} onChange={handleChange} />
+            </div>
+            <div className="form-group">
+                <label>Total wages paid category-wise: women</label>
+                <input type="text" name="totalWagesWomen" value={formData?.totalWagesWomen || ""} onChange={handleChange} />
             </div>
 
             <div className="form-group">

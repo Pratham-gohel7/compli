@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
+
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
   const location = useLocation();
@@ -23,6 +25,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
   const [isPdfDownloadOpen, setIsPdfDownloadOpen] = useState(false);
 
   return (
+    
     <div className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}>
       <button
         className="toggle-sidebar-btn"
@@ -30,11 +33,14 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <i className="bi bi-layout-sidebar"></i>
+        {/* <i className="bi bi-layout-sidebar"></i>
+         */}
+        <FaBars />
         {isHovered && (
           <span className="tooltip">{isSidebarOpen ? "Close Sidebar" : "Open Sidebar"}</span>
         )}
       </button>
+
 
       {isSidebarOpen && (
         <nav>
@@ -55,7 +61,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <Link to="/attendance">Attendance</Link>
                 <Link to="/wages">Wages</Link>
                 <Link to="/OverTime">OverTime</Link>
-                <Link to="/leaveRequest">Leave Request</Link>
+                {/* <Link to="/leaveRequest">Leave Request</Link> */}
               </div>
             )}
           </div>
@@ -69,6 +75,9 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               <div className="dropdown-content">
                 <Link to="/FormNo15">Form No 15</Link>
                 <Link to="/FormNo28">Form No 28</Link>
+                <Link to="/FormReturn85">Return 85%</Link>
+                <Link to="/FormCNF">CNF Form</Link>
+                <Link to="/halfyearlyreturn">Half Yearly Return</Link>
                 <Link to="/Annualreturn">Annual Return</Link>
               </div>
             )}
@@ -85,6 +94,9 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <Link to="/FormNo13Pdf">Form 13</Link>
                 <Link to="/FormNo15Pdf">Form 15</Link>
                 <Link to="/FormNo28Pdf">Form 28</Link>
+                <Link to="/Return85Pdf">Form Return 85%</Link>
+                <Link to="/CNFFormPdf">CNF Form</Link>
+                <Link to="/HalfYearlyReturnPdf">Half Yearly Return</Link>
                 <Link to="/AnnualReturnPdf">Annual Return</Link>
               </div>
             )}

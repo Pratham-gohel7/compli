@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <title>Gujarati Employment Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    td, th {
+      border: 1px solid black;
+      padding: 6px;
+      vertical-align: top;
+    }
+    .no-border {
+      border: none;
+    }
+    .center {
+      text-align: center;
+    }
+    .bold {
+      font-weight: bold;
+    }
+    .right {
+      text-align: right;
+    }
+    .section-title {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <p class="center bold">
+    શ્રમ અને રોજગાર વિભાગના તા.૩૧-૦૩-૧૯૬૫ ના હુકમ મુજબ રાજ્યમાં આવેલ જાહેર સાઇટો<br/>
+    અને સંયુક્ત ક્ષેત્રીય તેમજ મોટા ઉદ્યોગોમાં ૭૫% જગ્યાઓ સ્થાનિક ઉમેદવારોથી ભરવાની<br/>
+    જોગવાઈ અનુસાર કુલ રોજગારી અને તેમાં થી સ્થાનિક રોજગારીની માહિતી દર્શાવતું એક માસિક<br/>
+    પત્રક
+  </p>
+
+  <p class="right bold">જૂન/ડિસેમ્બર - <%= new Date(data.reporting_period).getFullYear() %> અંતિમ માહિતી</p>
+  <p class="right"><em>End of June/December - <%= new Date(data.reporting_period).getFullYear() %></em></p>
+
+  <table>
+    <tr>
+      <td style="width: 10%;">૧</td>
+      <td style="width: 45%;">એમ્પ્લોયરની નામ અને સરનામું:<br/><em>(Name & Address of Employer:)</em></td>
+      <td><%= data.employer_name %><br/><%= data.employer_address %></td>
+    </tr>
+    <tr>
+      <td>૨</td>
+      <td>સંપર્ક અધિકારીનુ નામ, ટેલીફોન નંબર અને મોબાઇલ નંબર:<br/>
+        <em>(Name of Contact Person With Telephone Number & Mobile Number)</em>
+      </td>
+      <td><%= data.contact_person_name %><br/><%= data.contact_telephone %><br/><%= data.contact_mobile %></td>
+    </tr>
+    <tr>
+      <td>૩</td>
+      <td>ક્ષેત્ર (Sector)</td>
+      <td>
+        <% if (data.sector === 'Private-Act Establishment') { %> Private-Act Establishment(ખાનગી ક્ષેત્ર) <% } %>
+        <% if (data.sector === 'Central Govt. Under Taking') { %> Central Govt. Under Taking(કેન્દ્ર સરકાર) <% } %>
+        <% if (data.sector === 'State Govt. Under Taking') { %> State Govt. Under Taking(રાજ્ય સરકાર) <% } %>
+      </td>
+    </tr>
+    <tr>
+        <td>૪</td>
+        <td colspan="2">
+          રોજગારીની સ્થિતિ : (Employment)<br/><br/>
+      
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td colspan="3" class="center bold">કુલ રોજગારીની સંખ્યા:<br/>(Total Employment)</td>
+              <td colspan="3" class="center bold">તે પૈકી સ્થાનિક રોજગારીની સંખ્યા:<br/>(Local Employment out of Total Employment)</td>
+            </tr>
+            <tr>
+              <td class="center bold">(1)<br/>સુપરવાઈઝર / મેનેજર વર્ગ<br/>(Supervisor / Manager Cader)</td>
+              <td class="center bold">(2)<br/>કામદારો / કર્મચારી વર્ગ<br/>(Non Supervisor / Worker Cader)</td>
+              <td class="center bold">(3)<br/>કુલ<br/>(Total)</td>
+              <td class="center bold">(4)<br/>સુપરવાઈઝર / મેનેજર વર્ગ (ટકાવારી સાથે)<br/>(Supervisor / Manager Cader & Percentage again col.1)</td>
+              <td class="center bold">(5)<br/>કામદારો / કર્મચારી વર્ગ (ટકાવારી સાથે)<br/>(Non Supervisor / Worker Cader Percentage again col.2)</td>
+              <td class="center bold">(6)<br/>કુલ (ટકાવારી સાથે)<br/>(Total Percentage again col.3)</td>
+            </tr>
+            <tr>
+              <td class="center"><%= data.total_supervisors %></td>
+              <td class="center"><%= data.total_workers %></td>
+              <td class="center"><%= data.total_employments %></td>
+              <td class="center"><%= data.local_supervisor_percentage %> (%)</td>
+              <td class="center"><%= data.local_workers_percentage %> (%)</td>
+              <td class="center"><%= data.total_percentage %> (%)</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+  </table>
+
+  <div style="font-family: 'Noto Sans Gujarati', sans-serif; margin-top: 70px; display: flex; justify-content: space-between;">
+    <!-- Right side: Signature -->
+    <div style="width: auto; text-align: right;">
+      નોકરીદાતાની સહી અને સિક્કો<br/>
+      <span style="font-style: italic;">( Signature with Stamp of Employer )</span>
+    </div>
+    <!-- Left side: Address -->
+    <div style="width: auto;">
+      પ્રતિ,<br/>
+      રોજગાર અધિકારીશ્રી,<br/>
+      જિલ્લા રોજગાર વિનિમય કચેરી,<br/>
+      વલસાડ.<br/><br/>
+      <div style="margin-top: 10px;">
+        (નોંધ :- જૂન અંતિત પત્રક ૩૧ મી જુલાઈ સુધીમાં અને ડિસેમ્બર અંતિત પત્રક ૩૧ જાન્યુઆરી સુધીમાં કચેરીને મોકલી આપવાનું રહે છે.)
+      </div>
+    </div>
+  
+  </div>
+
+</body>
+</html>

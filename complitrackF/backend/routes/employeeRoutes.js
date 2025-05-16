@@ -111,5 +111,14 @@ router.get("/employees", async (req, res) => {
     }
 });
 
+router.get('/count/employees', async (req, res) => {
+    try {
+      const count = await Employee.countDocuments();
+      res.json({ totalEmployees: count });
+    } catch (error) {
+      res.status(500).json({ error: 'Error counting employees' });
+    }
+  });
+
 
 module.exports = router;

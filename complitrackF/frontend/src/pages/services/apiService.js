@@ -74,6 +74,27 @@ export const saveAnnualReturn = async (companyId, year, formData) => {
     }
 };
 
+export const saveReturn85 = async (formData) => {
+    try {
+        // ✅ Convert formData into a plain JSON object (avoid circular references)
+        const cleanFormData = JSON.parse(JSON.stringify(formData));
+
+        const response = await fetch('http://localhost:5001/api/returns', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            form_data: cleanFormData
+        });
+
+        console.log("✅ Annual Return Saved:", response.data);
+        return response.data;
+    } catch (error) {
+        console.error("❌ Error saving annual return:", error);
+        throw error;
+    }
+};
+
 
 // ✅ Correct Export - Ensure no duplicate exports
 export { fetchCompanyDetails };

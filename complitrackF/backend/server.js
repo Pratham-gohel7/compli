@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
@@ -23,20 +24,14 @@ const path = require("path");
 const app = express();
 app.use(bodyParser.json());
 
-
-
-
 // Middleware
 app.use(express.json());
 
 app.use(cors());
 
-
 app.use(morgan("dev"));
 
 const port = process.env.PORT || 5000;
-
-
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -53,7 +48,9 @@ const formNo15Routes = require("./routes/formNo15Routes");
 const formNo28Routes = require("./routes/formNo28Routes");
 const overTimeRoutes = require("./routes/OverTimeRoutes");
 const contractorRoutes = require("./routes/ContractorRoutes");
-
+const return85Routes = require("./routes/FormReturn85Routes");
+const CNFRoutes = require('./routes/CNFRoutes')
+const halfYearlyReturnRoutes = require('./routes/HalfYearlyReturnRoutes')
 
 
 app.use("/api/wages", wageRoutes);
@@ -68,10 +65,18 @@ app.use("/api/form28", formNo28Routes);
 app.use("/api/overtime", overTimeRoutes);
 app.use("/api/annualreturn", annualReturnRoutes);
 app.use("/api", contractorRoutes);
+app.use("/api/returns", return85Routes);
+app.use("/api/form-cnf", CNFRoutes);
+app.use("/api/half-yearly-return", halfYearlyReturnRoutes);
+
+
+app.set('view engine', 'ejs');
+app.set('/views', path.join(__dirname, 'views'));
 
 app.get("/", (req, res) => {
   res.send("Welcome to CompliTrack API!");
 });
+
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/public", express.static(path.join(__dirname, "public")));

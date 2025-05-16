@@ -23,6 +23,12 @@ import FormNo13Pdf from "./pages/PdfDownload/FormNo13Pdf";
 import Annualreturnpdf from "./pages/PdfDownload/AnnualReturnPdf";
 import ContractorPage from "./pages/ContractorPage";
 import FormNo12Pdf from "./pages/PdfDownload/FormNo12Pdf";
+import Return85 from "./pages/transcation/Return85";
+import FormCNF from "./pages/transcation/FormCNF";
+import HalfYearlyReturnForm from "./pages/transcation/HalfYearlyReturnForm";
+import Return85Pdf from "./pages/PdfDownload/Return85Pdf";
+import FormCNFPdf from "./pages/PdfDownload/CNFPdf";
+import HalfYearlyReturnPDF from "./pages/PdfDownload/HalfYearlyReturnPfd"
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -44,8 +50,6 @@ const Layout = ({ children }) => {
     </div>
   );
 };
-
-
 
 
 const App = () => {
@@ -196,12 +200,64 @@ const App = () => {
                     </PrivateRoute>
                   }
                 />
+                <Route
+                  path="/Return85Pdf"
+                  element={
+                    <PrivateRoute>
+                      <Return85Pdf />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/HalfYearlyReturnPdf"
+                  element={
+                    <PrivateRoute>
+                      <HalfYearlyReturnPDF />
+                    </PrivateRoute>
+                  }
+                />
 
                 <Route
                   path="/FormNo12pdf"
                   element={
                     <PrivateRoute>
                       <FormNo12Pdf />
+                    </PrivateRoute>
+                  }
+                />
+
+                <Route
+                  path="/FormReturn85"
+                  element={
+                    <PrivateRoute>
+                      <Return85 />
+                    </PrivateRoute>
+                  }
+                />
+
+                <Route
+                  path="/FormCNF"
+                  element={
+                    <PrivateRoute>
+                      <FormCNF />
+                    </PrivateRoute>
+                  }
+                />
+
+                <Route
+                  path="/CNFFormPdf"
+                  element={
+                    <PrivateRoute>
+                      <FormCNFPdf />
+                    </PrivateRoute>
+                  }
+                />
+                
+                <Route
+                  path="/halfyearlyreturn"
+                  element={
+                    <PrivateRoute>
+                      <HalfYearlyReturnForm />
                     </PrivateRoute>
                   }
                 />

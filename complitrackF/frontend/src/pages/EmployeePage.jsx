@@ -107,7 +107,7 @@ const EmployeePage = () => {
               <th>UAN Number</th>
               <th>ESIC Number</th>
               <th>Weekly Off Days</th>
-              <th>Actions</th>
+              {/* <th>Actions</th> */}
             </tr>
           </thead>
           <tbody>
@@ -135,10 +135,10 @@ const EmployeePage = () => {
                 <td>{employee.uan_number}</td>
                 <td>{employee.esic_number}</td>
                 <td>{employee.weekly_off_days}</td>
-                <td>
+                {/* <td>
                   <button className="edit-btn">Edit</button>
                   <button className="delete-btn">Delete</button>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>

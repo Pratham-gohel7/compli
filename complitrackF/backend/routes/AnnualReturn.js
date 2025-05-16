@@ -9,11 +9,19 @@ const db = require("../config/database.js");
 const generatePDF = require("../utils/pdfGenerator.js")
 
 router.get("/with-annual-report", async (req, res) => {
-    const query = `
-        SELECT DISTINCT c.company_id, c.company_name, ar.year, ar.form_data
-        FROM companies c
-        JOIN annual_returns ar ON c.company_id = ar.company_id
-    `;
+    // const query = `
+    //     SELECT DISTINCT c.company_id, c.company_name, ar.year, ar.form_data
+    //     FROM companies c
+    //     JOIN annual_returns ar ON c.company_id = ar.company_id
+    // `;
+
+    const query = `SELECT 
+    c.company_id, 
+    c.company_name,
+    MAX(ar.year) AS latest_year
+FROM companies c
+JOIN annual_returns ar ON c.company_id = ar.company_id
+GROUP BY c.company_id, c.company_name;`
 
     try {
         const [result] = await db.query(query); // this returns an array
@@ -104,7 +112,6 @@ router.get("/generate-pdf/:companyId/:year", async (req, res) => {
             }
 
             // ✅ Send back the downloadable PDF URL
-            // res.json({ pdfUrl: `/pdfs/${filename}` });
             res.json({ pdfUrl: `/pdfs/${filename}` });
         });
 
@@ -134,7 +141,7 @@ router.post("/save", async (req, res) => {
 
         res.status(201).json({ message: "Annual Return saved successfully", data: savedReturn });
     } catch (error) {
-        console.error("Error saving annual return:", error);
+        console.error("Error saving annual return or Required Field is empty", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
 });

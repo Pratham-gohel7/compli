@@ -311,16 +311,16 @@
 
       <br /><br /><br />
       <div class="section-title">
-        <span class="question">4 :Total wages paid category wise :</span>
+        <span class="question">4 :Total wages paid category wise : <%= Number(data.partA.totalWagesMan) + Number(data.partA.totalWagesWomen) %></span>
         <span class="section-content">
           <table>
             <tr>
               <td class="type-of-worker">Male</td>
-              <td><%= data.wages_male %></td>
+              <td><%= data.partA.totalWagesMan %></td>
             </tr>
             <tr>
               <td class="type-of-worker">Female</td>
-              <td><%= data.wages_female %></td>
+              <td><%= data.partA.totalWagesWomen %></td>
             </tr>
           </table>
         </span>

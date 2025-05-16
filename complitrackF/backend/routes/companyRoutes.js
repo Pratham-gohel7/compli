@@ -108,5 +108,14 @@ router.get("/companies/:id", async (req, res) => {
   }
 });
 
+router.get('/count/companies', async (req, res) => {
+  try {
+    const count = await Company.countDocuments();
+    res.json({ totalCompanies: count });
+  } catch (error) {
+    res.status(500).json({ error: 'Error counting companies' });
+  }
+});
+
 
 module.exports = router;
