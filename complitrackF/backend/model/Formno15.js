@@ -24,6 +24,7 @@ const FormNo15 = sequelize.define("FormNo15", {
     employee_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        unique: true,
         references: {
             model: Employee,
             key: "employee_id"
@@ -31,6 +32,7 @@ const FormNo15 = sequelize.define("FormNo15", {
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
     },
+    name: { type: DataTypes.STRING, allowNull: true },
 
     date_of_birth: { type: DataTypes.DATEONLY, allowNull: true },
     sex: { type: DataTypes.ENUM("Male", "Female", "Other"), allowNull: true },

@@ -78,7 +78,7 @@
 
             <!-- ✅ Ensure correct references to Employee fields -->
             <td>
-                <%= worker.employee?.first_name || "-" %>
+                <%= worker.employee?.first_name + " " + worker.employee?.last_name || "-" %>
             </td>
             <td>
                 <%= worker.employee?.date_of_birth || "-" %>
