@@ -6,9 +6,10 @@ const FormNo15Pdf = () => {
   const [selectedCompanyId, setSelectedCompanyId] = useState(null);
   const [pdfUrl, setPdfUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    axios.get("http://localhost:5001/api/companies")
+    axios.get(`${API_BASE_URL}/companies`)
       .then(response => {
         setCompanies(response.data);
         console.log("✅ Companies fetched:", response.data);
@@ -17,80 +18,101 @@ const FormNo15Pdf = () => {
   }, []);
 
 
-
-
-
   // const downloadPDF = async () => {
   //   if (!selectedCompanyId) {
-  //     alert("Please select a company before downloading");
+  //     alert("Please select a company before generating the PDF");
   //     return;
   //   }
 
   //   setLoading(true);
+
   //   try {
-  //     const response = await fetch("http://localhost:5001/api/generate-pdf", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify({ company_id: selectedCompanyId })
+  //     const response = await axios.post(`${API_BASE_URL}/generate-pdf`, {
+  //       company_id: selectedCompanyId
   //     });
 
-  //     if (!response.ok) {
-  //       throw new Error("Failed to download PDF");
+  //     if (response.data.pdfUrl) {
+  //       setPdfUrl(`${API_BASE_URL}${data.pdfUrl}`); // ✅ Set URL for frontend preview
+  //     } else {
+  //       alert("Error generating PDF");
   //     }
-
-  //     // Create a blob from the response
-  //     const blob = await response.blob();
-  //     const url = window.URL.createObjectURL(blob);
-
-  //     // Create a temporary <a> element to trigger the download
-  //     const a = document.createElement("a");
-  //     a.href = url;
-  //     a.download = `FormNo15_${selectedCompanyId}.pdf`;
-  //     document.body.appendChild(a);
-  //     a.click();
-
-  //     // Cleanup
-  //     document.body.removeChild(a);
-  //     window.URL.revokeObjectURL(url);
   //   } catch (error) {
-  //     console.error("Error downloading PDF:", error);
-  //   }
-  //   finally {
-  //     setTimeout(() => setLoading(false), 1000); // ✅ Simulate loading delay for better UI
+  //     console.error("❌ Error generating PDF Or Data Does not exists", error);
+  //     alert("Data Does not exists");
+  //   } finally {
+  //     setTimeout(() => setLoading(false), 1000); // ✅ Simulate loading delay
   //   }
   // };
 
-
   const downloadPDF = async () => {
     if (!selectedCompanyId) {
-      alert("Please select a company before generating the PDF");
-      return;
+        alert("Please select a company before generating the PDF");
+        return;
     }
 
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5001/api/generate-pdf", {
-        company_id: selectedCompanyId
-      });
+        const response = await axios.post(`${API_BASE_URL}/generate-pdf`, {
+            company_id: selectedCompanyId
+        }, {
+            responseType: 'blob' // Important for handling PDF response
+        });
 
-      if (response.data.pdfUrl) {
-        setPdfUrl(`http://localhost:5001${response.data.pdfUrl}`); // ✅ Set URL for frontend preview
-      } else {
-        alert("Error generating PDF");
-      }
+        // Create a blob URL for the PDF
+        const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        setPdfUrl(pdfUrl);
+
+        // Optionally auto-download the PDF
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.download = `form15_${selectedCompanyId}.pdf`;
+        link.click();
+
     } catch (error) {
-      console.error("❌ Error generating PDF Or Data Does not exists", error);
-      alert("Data Does not exists");
+        console.error("❌ Error generating PDF:", error);
+        alert(error.response?.data?.message || "Error generating PDF");
     } finally {
-      setTimeout(() => setLoading(false), 1000); // ✅ Simulate loading delay
+        setLoading(false);
     }
-  };
+};
 
+const generateForm15PDF = async () => {
+    if (!selectedCompanyId) {
+        alert("Please select a company first");
+        return;
+    }
 
+    setLoading(true);
 
+    try {
+        const response = await axios.post(
+            `${API_BASE_URL}/generate-form15-pdf`,
+            { company_id: selectedCompanyId },
+            { responseType: 'blob' } // Important for PDF response
+        );
+
+        // Create PDF blob URL
+        const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        setPdfUrl(pdfUrl);
+
+        // Auto-download the PDF
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.download = `Form15_${selectedCompanyId}_${new Date().toISOString().split('T')[0]}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+    } catch (error) {
+        console.error("Error generating Form 15 PDF:", error);
+        alert(error.response?.data?.error || "Failed to generate PDF");
+    } finally {
+        setLoading(false);
+    }
+};
 
   return (
     <div className="form-container">

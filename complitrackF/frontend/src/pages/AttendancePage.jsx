@@ -4,6 +4,7 @@ import axios from "axios";
 const AttendancePage = () => {
   const [attendanceData, setAttendanceData] = useState([]);
   const [file, setFile] = useState(null);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   // Fetching attendance data from backend when component mounts
   useEffect(() => {
@@ -11,7 +12,7 @@ const AttendancePage = () => {
   }, []);
 
   const fetchAttendanceData = () => {
-    axios.get("http://localhost:5001/api/attendance")
+    axios.get(`${API_BASE_URL}/attendance`)
       .then(response => setAttendanceData(response.data))
       .catch(error => console.error("Error fetching attendance data:", error));
   };
@@ -31,7 +32,7 @@ const AttendancePage = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    axios.post("http://localhost:5001/api/attendance/upload", formData)
+    axios.post(`${API_BASE_URL}/attendance/upload`, formData)
       .then(response => {
         alert("File uploaded successfully!");
         fetchAttendanceData();  // Refresh data dynamically

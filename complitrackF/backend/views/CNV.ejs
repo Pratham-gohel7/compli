@@ -1,0 +1,310 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form of Notification of Vacancies</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      font-size: 25px;
+      line-height: 1.8;
+      margin: 40px;
+    }
+    h2, h3 {
+      text-align: center;
+      margin: 0;
+    }
+    .section {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 100px;
+    }
+    .field-row {
+      margin-top: 8px;
+    }
+    .field-label {
+      font-weight: bold;
+    }
+    .field-label::after {
+      content: ": ";
+    }
+    .signature-area {
+      margin-top: 60px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .signature-area div {
+      width: 45%;
+    }
+  </style>
+</head>
+<body>
+  <h2>Form of Notification of Vacancies</h2>
+  <h3>(See Rule: 4)</h3>
+
+  <div class="section">
+    <div class="field-row"><span class="field-label">1. Name and address of Employer</span><%= data.employer_name %>, <%= data.employer_address %></div>
+    <div class="field-row"><span class="field-label">2. Telephone Number of the Employer, if any</span><%= data.telephone %></div>
+    <div class="field-row"><span class="field-label">3. Nature of Vacancy</span><%= data.vacancy_nature %></div>
+    <div class="field-row"><span class="field-label">3(a) Type of Workers required (Designation)</span><%= data.worker_type %></div>
+    <div class="field-row"><span class="field-label">3(b) Description of duties</span><%= data.duties_description %></div>
+    <div class="field-row"><span class="field-label">3(c)(i) Essential Qualification</span><%= data.essential_qualification %></div>
+    <div class="field-row"><span class="field-label">3(c)(ii) Desirable Qualification</span><%= data.desirable_qualification %></div>
+    <div class="field-row"><span class="field-label">3(d) Age limits, if any</span><%= data.age_limit %></div>
+    <div class="field-row"><span class="field-label">3(e) Whether women are eligible</span><%= data.women_eligible %></div>
+
+    <div class="field-row"><span class="field-label">4(a) Number of Regular Vacancies</span><%= data.regular_vacancies %></div>
+    <div class="field-row"><span class="field-label">4(b) Number of Temporary Vacancies</span><%= data.temporary_vacancies %></div>
+
+    <div class="field-row"><span class="field-label">5. Pay and allowance</span><%= data.pay_allowance %></div>
+    <div class="field-row"><span class="field-label">6. Place of work (Town / Village / District)</span><%= data.work_place %></div>
+    <div class="field-row"><span class="field-label">7. Probable date by which vacancy will be filled</span><%= data.probable_filling_date %></div>
+
+    <div class="field-row"><span class="field-label">8(a) Date of interview/test</span><%= data.interview_date %></div>
+    <div class="field-row"><span class="field-label">8(b) Time of interview/test</span><%= data.interview_time %></div>
+    <div class="field-row"><span class="field-label">8(c) Place of interview/test</span><%= data.interview_place %></div>
+    <div class="field-row"><span class="field-label">8(d) Person to whom applicants should report</span><%= data.report_to %></div>
+
+    <div class="field-row"><span class="field-label">9(1) Scheduled Caste</span><%= data.sc_vacancies %></div>
+    <div class="field-row"><span class="field-label">9(2) Scheduled Tribe</span><%= data.st_vacancies %></div>
+    <div class="field-row"><span class="field-label">9(3) Ex-Service men</span><%= data.exservicemen_vacancies %></div>
+    <div class="field-row"><span class="field-label">9(4) Physically Handicapped</span><%= data.ph_vacancies %></div>
+    <div class="field-row"><span class="field-label">9(5) Other</span><%= data.other_vacancies %></div>
+    <div class="field-row"><span class="field-label">Total Vacancies</span><%= data.total_vacancies %></div>
+
+    <div class="field-row" style="margin-top: 20px;"><strong>9.2</strong> The vacancies shall be re-notified in writing to the appropriate Employment Exchange if there is any change in the particulars already furnished to the Employment Exchange under sub-rule (1).</div>
+
+    <div class="field-row" style="margin-top: 12px;"><span class="field-label">10. Any other relevant information</span><%= data.other_information %></div>
+  </div>
+
+  <div class="signature-area">
+    <div>
+
+      <strong>Date:</strong> <%= new Date(data.updatedAt).toISOString().split("T")[0] %>
+
+    </div>
+    <div style="text-align: right;">
+      <strong>Signature of Employer:</strong><br><br>
+      __________
+    </div>
+  </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form of Notification of Vacancies</title>
+  <style>
+    @font-face {
+      font-family: 'NotoSansGujarati';
+      src: url('https://fonts.gstatic.com/s/notosansgujarati/v21/NotoSansGujarati-Regular.ttf') format('truetype');
+    }
+
+    body {
+      font-family: 'NotoSansGujarati', Arial, sans-serif;
+      font-size: 18pt;
+      line-height: 1.8;
+      margin: 60px;
+    }
+
+    .field-row {
+      margin-bottom: 30px;
+    }
+
+    .label-gujarati {
+      display: block;
+    }
+
+    .label-english {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align: center;">ખાલી જગ્યા જણાવવા માટેનો પત્રક</h2>
+  <h3 style="text-align: center;">Form of Notification of Vacancies (See Rule: 4)</h3>
+
+  <div class="field-row">
+    <span class="label-gujarati">૧. માલિકનું નામ તથા સરનામુંઃ</span>
+    <span class="label-english">Name and address of Employer</span> :- <%= data.employer_name %>, <%= data.employer_address %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">૨. માલિકનો ટેલીફોન નંબર જો હોય તોઃ</span>
+    <span class="label-english">Telephone Number of the Employer, if any</span> :- <%= data.telephone %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">૩. ખાલી જગ્યાનો પ્રકારઃ</span>
+    <span class="label-english">Nature of Vacancy</span> :- <%= data.vacancy_nature %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">(૩)(અ) કયા પ્રકારના કામદારો જરૂરી છે (હોદ્દો)ઃ</span>
+    <span class="label-english">Type of Workers required (Designation)</span> :- <%= data.worker_type %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">(૩)(બ) ફરજનું વર્ણનઃ</span>
+    <span class="label-english">Description of duties</span> :- <%= data.duties_description %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">(૩)(ક)(૧) આવશ્યક લાયકાતઃ</span>
+    <span class="label-english">Essential</span> :- <%= data.essential_qualification %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">(૩)(ક)(૨) ઇચ્છનીય લાયકાતઃ</span>
+    <span class="label-english">Desirable</span> :- <%= data.desirable_qualification %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">(૩)(ડ) ઉંમર મર્યાદા જો હોય તોઃ</span>
+    <span class="label-english">Age limits, if any</span> :- <%= data.age_limit %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">(૩)(ઇ) શું મહિલા ઉમેદવાર આ જગ્યા માટે લાયક છે ?</span>
+    <span class="label-english">Whether women are eligible?</span> :- <%= data.women_eligible %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">૪. ખાલી જગ્યાઓની સંખ્યા:</span>
+    <span class="label-english">(a) Regular</span> :- <%= data.regular_vacancies %><br>
+    <span class="label-english">(b) Temporary</span> :- <%= data.temporary_vacancies %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">૫. પગાર અને ભથ્થાં:</span>
+    <span class="label-english">Pay and allowance</span> :- <%= data.pay_allowance %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">૬. કામનું સ્થાન (શહેરનું નામ, તાલુકો અને જિલ્લો જ્યાં કામગીરી કરવાની છે):</span>
+    <span class="label-english">Place of work (name of Town / village and District in which it is situated)</span> :- <%= data.work_place %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">૭. સંભવિત તારીખ કે જે દ્વારા ખાલી જગ્યા ભરવાના છેઃ</span>
+    <span class="label-english">Probable date by which the vacancy will be filled</span> :- <%= data.probable_filling_date %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">૮. ઉમેદવારો માટે પરીક્ષા / ઇન્ટરવ્યુ સંબંધિત વિગતો:</span>
+    <span class="label-english">Particulars regarding interview / Test of applicants</span>
+  </div>
+
+  <div class="field-row" style="padding-left: 25px;">
+    <span class="label-gujarati">(અ) પરીક્ષા / ઇન્ટરવ્યુની તારીખઃ</span>
+    <span class="label-english">Date of interview / Test</span> :- 
+    <% if (data.interview_date === '0000-00-00' || !data.interview_date) { %>
+      Will be informed later
+    <% } else { %>
+      <%= data.interview_date %> to <%= data.probable_filling_date %>
+    <% } %>
+  </div>
+
+
+  <% function formatTime(t) {
+    if (!t || t === '00:00:00') return null;
+    const [hourStr, min] = t.split(':');
+    let hour = parseInt(hourStr, 10);
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12 || 12;
+    return `${hour}:${min} ${ampm}`;
+  } %>
+
+  <div class="field-row" style="padding-left: 25px;">
+    <span class="label-gujarati">(બ) પરીક્ષા / ઇન્ટરવ્યુનો સમય:</span>
+    <span class="label-english">Time of interview / Test</span> :- 
+    <% if (!data.interview_start_time && !data.interview_end_time) { %>
+      Will be informed later
+    <% } else if (data.interview_start_time && !data.interview_end_time) { %>
+      <%= formatTime(data.interview_start_time) %> onwards
+    <% } else if (data.interview_start_time && data.interview_end_time) { %>
+      <%= formatTime(data.interview_start_time) %> to <%= formatTime(data.interview_end_time) %>
+    <% } else { %>
+      Will be informed later
+    <% } %>
+  </div>
+
+  <div class="field-row" style="padding-left: 25px;">
+    <span class="label-gujarati">(ક) પરીક્ષા / ઇન્ટરવ્યુ નું સ્થાન:</span>
+    <span class="label-english">Place of interview / Test</span> :- <%= data.interview_place %>
+  </div>
+
+  <div class="field-row" style="padding-left: 25px;">
+    <span class="label-gujarati">(ડ) અરજદારોએ કોને રિપોર્ટ કરવું:</span>
+    <span class="label-english">To whom applicants should report</span> :- <%= data.report_to %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">૯. ખાલી જગ્યા ભરતી વખતે ખાસ અગત્યના કેટલાંક વર્ગો જેવા કે અનુસૂચિત જાતિ, અનુસૂચિત જનજાતિ, માજી સૈનિક, શારીરિક ક્ષતિ ધરાવતાં લોકો વગેરે માટે પસંદગી આપવા માટે કોઈ ફરજ અથવા ગોઠવણ હોય તો નીચે મુજબ માહિતી આપવી:</span>
+    <span class="label-english">
+      Whether there is any obligation or arrangement for giving preference to any category of persons such as Scheduled Caste, Scheduled Tribe, Ex-Service men and Physically Handicapped persons in filling up the vacancies and if so, the number of vacancies to be filled by such categories of person.
+    </span>
+  </div>
+
+  <div class="field-row" style="padding-left: 25px;">
+    <span class="label-gujarati">૧. અનુસૂચિત જાતિ માટે:</span>
+    <span class="label-english">Scheduled Caste</span> :- <%= data.sc_vacancies %>
+  </div>
+
+  <div class="field-row" style="padding-left: 25px;">
+    <span class="label-gujarati">૨. અનુસૂચિત જનજાતિ માટે:</span>
+    <span class="label-english">Scheduled Tribe</span> :- <%= data.st_vacancies %>
+  </div>
+
+  <div class="field-row" style="padding-left: 25px;">
+    <span class="label-gujarati">૩. માજી સૈનિક માટે:</span>
+    <span class="label-english">Ex-Servicemen</span> :- <%= data.exservicemen_vacancies %>
+  </div>
+
+  <div class="field-row" style="padding-left: 25px;">
+    <span class="label-gujarati">૪. શારીરિક ક્ષતિ ધરાવતાં વ્યક્તિ માટે:</span>
+    <span class="label-english">Physically Handicapped</span> :- <%= data.ph_vacancies %>
+  </div>
+
+  <div class="field-row" style="padding-left: 25px;">
+    <span class="label-gujarati">૫. અન્ય:</span>
+    <span class="label-english">Others</span> :- <%= data.other_vacancies %>
+  </div>
+
+  <div class="field-row" style="padding-left: 25px;">
+    <span class="label-gujarati">કુલ:</span>
+    <span class="label-english">Total</span> :- <%= data.total_vacancies %>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">૯.૨ જગ્યા અંગે આપેલી વિગતોમાં જો કોઈ ફેરફાર થાય તો ફેરફાર સાથે ખાલી જગ્યાની લેખિત જાણ નવીનરૂપથી સંબંધિત રોજગાર કચેરીને કરાવવી રહેશે.</span>
+    <span class="label-english">
+      The vacancies shall be re-notified in writing to the appropriate Employment Exchange,
+      if there is any change in the particulars already furnished to the Employment Exchange under sub-rule (1).
+    </span>
+  </div>
+
+  <div class="field-row">
+    <span class="label-gujarati">૧૦. બીજી કોઈ લાગુ પડતી માહિતી:</span>
+    <span class="label-english">Any other relevant information</span> :- <%= data.other_information %>
+  </div>
+
+  <div class="field-row" style="margin-top: 80px; display: flex; justify-content: space-between;">
+    <div>
+      <span class="label-gujarati">તારીખ:</span>
+      <span class="label-english">Date</span> :- <%= new Date(data.updatedAt).toISOString().split("T")[0] %>
+    </div>
+    <div style="text-align: right;">
+      <span class="label-gujarati">માલિકની સહી:</span><br>
+      <span class="label-english">Signature of Employer.</span>
+    </div>
+  </div>
+
+</body>
+</html>
+

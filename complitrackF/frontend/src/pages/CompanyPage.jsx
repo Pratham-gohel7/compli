@@ -6,10 +6,11 @@ const CompanyPage = () => {
   const [file, setFile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editableCompany, setEditableCompany] = useState(null);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   // Fetch companies from backend
   const fetchCompanies = () => {
-    axios.get("http://localhost:5001/api/companies")
+    axios.get(`${API_BASE_URL}/companies`)
       .then(response => setCompanies(response.data))
       .catch(error => console.error("Error fetching data:", error));
   };
@@ -25,7 +26,7 @@ const CompanyPage = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    axios.post("http://localhost:5001/api/upload-company", formData)
+    axios.post(`${API_BASE_URL}/upload-company`, formData)
       .then(() => {
         alert("File uploaded successfully!");
         fetchCompanies(); // Refresh data
@@ -49,7 +50,7 @@ const CompanyPage = () => {
 
   // Handle update submission
   const handleUpdate = () => {
-    axios.put(`http://localhost:5001/api/companies/update/${editableCompany.company_id}`, editableCompany)
+    axios.put(`${API_BASE_URL}/companies/update/${editableCompany.company_id}`, editableCompany)
       .then(() => {
         alert("Company updated successfully!");
         setIsEditing(false); // Close form

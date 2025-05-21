@@ -7,6 +7,7 @@ const ContractorPage = () => {
     const [contractors, setContractors] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     // Handle file selection
     const handleFileChange = (event) => {
@@ -25,8 +26,8 @@ const ContractorPage = () => {
 
         try {
             setLoading(true);
-            setError("");
-            await axios.post("http://localhost:5001/api/upload", formData, {
+            setError("")
+            await axios.post(`${API_BASE_URL}/upload`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
@@ -43,7 +44,7 @@ const ContractorPage = () => {
     // Fetch contractors from backend
     const fetchContractors = async () => {
         try {
-            const response = await axios.get("http://localhost:5001/api/");
+            const response = await axios.get(`${API_BASE_URL}/`);
             setContractors(response.data);
         } catch (err) {
             console.error("Error fetching contractors:", err);

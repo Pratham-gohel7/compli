@@ -24,10 +24,10 @@ import Annualreturnpdf from "./pages/PdfDownload/AnnualReturnPdf";
 import ContractorPage from "./pages/ContractorPage";
 import FormNo12Pdf from "./pages/PdfDownload/FormNo12Pdf";
 import Return85 from "./pages/transcation/Return85";
-import FormCNF from "./pages/transcation/FormCNF";
+import FormCNV from "./pages/transcation/FormCNV";
 import HalfYearlyReturnForm from "./pages/transcation/HalfYearlyReturnForm";
 import Return85Pdf from "./pages/PdfDownload/Return85Pdf";
-import FormCNFPdf from "./pages/PdfDownload/CNFPdf";
+import FormCNVPdf from "./pages/PdfDownload/CNVPdf";
 import HalfYearlyReturnPDF from "./pages/PdfDownload/HalfYearlyReturnPfd"
 
 const Layout = ({ children }) => {
@@ -236,19 +236,19 @@ const App = () => {
                 />
 
                 <Route
-                  path="/FormCNF"
+                  path="/FormCNV"
                   element={
                     <PrivateRoute>
-                      <FormCNF />
+                      <FormCNV />
                     </PrivateRoute>
                   }
                 />
 
                 <Route
-                  path="/CNFFormPdf"
+                  path="/CNVFormPdf"
                   element={
                     <PrivateRoute>
-                      <FormCNFPdf />
+                      <FormCNVPdf />
                     </PrivateRoute>
                   }
                 />

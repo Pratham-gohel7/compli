@@ -2,6 +2,7 @@
 import ContactTable from "./ContactTable";
 
 const CompanyInfo = ({ formData, handleChange }) => {
+    console.log(formData)
     return (
         <div>
             <br />

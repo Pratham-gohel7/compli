@@ -1,32 +1,28 @@
-// components/sections/EmployeeDetailsSection.jsx
+import React, {useEffect} from "react";
 
-import React, {useState} from "react";
-// directSkilled, directTotal, directMale, directFemale, contractorSkilled, contractorTotal, contractorMale, contractorFemale
 const EmployeeDetailsSection = ({ formData, handleChange }) => {
-  const [directSkilled, setDirectSkilled] = useState(
-    formData?.direct?.skilled || 0
-  );
-  const [directTotal, setDirectTotal] = useState(
-    formData?.employeeDetails?.direct?.total || 0
-  );
-  const [directMale, setDirectMale] = useState(
-    formData?.employeeDetails?.direct?.mal || 0
-  );
-  const [directFemale, setDirectFemale] = useState(
-    formData?.employeeDetails?.direct?.female || 0
-  );
-  const [contractorSkilled, setContractorSkilled] = useState(
-    formData?.employeeDetails?.contractor?.skilled || 0
-  );
-  const [contractorTotal, setContractorTotal] = useState(
-    formData?.employeeDetails?.contractor?.total || 0
-  );
-  const [contractorMale, setContractorMale] = useState(
-    formData?.employeeDetails?.contractor?.male || 0
-  );
-  const [contractorFemale, setContractorFemale] = useState(
-    formData?.employeeDetails?.contractor?.female || 0
-  );
+
+  useEffect(() => {
+    const totalContractor = Number(formData.contractorMale || 0) + Number(formData.contractorFemale || 0);
+    if (formData.contractorTotal !== totalContractor) {
+      handleChange({ target: { name: "contractorTotal", value: totalContractor } });
+    }
+
+    const totalDirect = Number(formData.directMale || 0) + Number(formData.directFemale || 0);
+    if (formData.directTotal !== totalDirect) {
+      handleChange({ target: { name: "directTotal", value: totalDirect } });
+    }
+  }, [formData.contractorMale, formData.contractorFemale, formData.directMale, formData.directFemale]);
+
+  // Auto-compute totals whenever formData changes
+  const computedTotals = {
+    directTotal: Number(formData.directTotal || 0),
+    contractorTotal: Number(formData.contractorTotal || 0),
+    skilledTotal: Number(formData.directSkilled || 0) + Number(formData.contractorSkilled || 0),
+    workersTotal: Number(formData.directSkilled || 0) + Number(formData.contractorSkilled || 0),
+    maleTotal: Number(formData.directMale || 0) + Number(formData.contractorMale || 0),
+    femaleTotal: Number(formData.directFemale || 0) + Number(formData.contractorFemale || 0),
+  };
 
   return (
     <div>
@@ -42,58 +38,33 @@ const EmployeeDetailsSection = ({ formData, handleChange }) => {
       >
         <thead>
           <tr>
-            <th
-              style={{ border: "1px solid black", padding: "8px" }}
-              rowSpan="2"
-            >
+            <th style={{ border: "1px solid black", padding: "8px" }} rowSpan="2">
               Type of Worker
             </th>
             <th style={{ border: "1px solid black" }}>Unskilled</th>
             <th style={{ border: "1px solid black" }}>Semiskilled</th>
-            <th style={{ border: "1px solid black", padding: "8px" }}>
-              Skilled
-            </th>
-            <th
-              style={{ border: "1px solid black", padding: "8px" }}
-              rowSpan="2"
-            >
-              Total
-            </th>
-            <th
-              style={{ border: "1px solid black", padding: "8px" }}
-              rowSpan="2"
-            >
+            <th style={{ border: "1px solid black", padding: "8px" }}>Skilled</th>
+            <th style={{ border: "1px solid black", padding: "8px" }} rowSpan="2">
               Male
             </th>
-            <th
-              style={{ border: "1px solid black", padding: "8px" }}
-              rowSpan="2"
-            >
+            <th style={{ border: "1px solid black", padding: "8px" }} rowSpan="2">
               Female
+            </th>
+            <th style={{ border: "1px solid black", padding: "8px" }} rowSpan="2">
+              Total
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style={{ border: "1px solid black", padding: "8px" }}>
-              Direct
-            </td>
+            <td style={{ border: "1px solid black", padding: "8px" }}>Direct</td>
             <td style={{ border: "1px solid black", padding: "8px" }}>0</td>
             <td style={{ border: "1px solid black", padding: "8px" }}>0</td>
             <td style={{ border: "1px solid black", padding: "8px" }}>
               <input
                 type="number"
                 name="directSkilled"
-                value={formData?.directSkilled}
-                onChange={handleChange}
-                style={{ width: "70px", textAlign: "center" }}
-              />
-            </td>
-            <td style={{ border: "1px solid black", padding: "8px" }}>
-              <input
-                type="number"
-                name="directTotal"
-                value={formData?.directTotal}
+                value={formData.directSkilled || ''}
                 onChange={handleChange}
                 style={{ width: "70px", textAlign: "center" }}
               />
@@ -102,7 +73,7 @@ const EmployeeDetailsSection = ({ formData, handleChange }) => {
               <input
                 type="number"
                 name="directMale"
-                value={formData?.directMale}
+                value={formData.directMale || ''}
                 onChange={handleChange}
                 style={{ width: "70px", textAlign: "center" }}
               />
@@ -111,7 +82,16 @@ const EmployeeDetailsSection = ({ formData, handleChange }) => {
               <input
                 type="number"
                 name="directFemale"
-                value={formData?.directFemale}
+                value={formData.directFemale || ''}
+                onChange={handleChange}
+                style={{ width: "70px", textAlign: "center" }}
+              />
+            </td>
+            <td style={{ border: "1px solid black", padding: "8px" }}>
+              <input
+                type="number"
+                name="directTotal"
+                value={formData.directTotal || ''}
                 onChange={handleChange}
                 style={{ width: "70px", textAlign: "center" }}
               />
@@ -127,16 +107,7 @@ const EmployeeDetailsSection = ({ formData, handleChange }) => {
               <input
                 type="number"
                 name="contractorSkilled"
-                value={formData?.contractorSkilled}
-                onChange={handleChange}
-                style={{ width: "70px", textAlign: "center" }}
-              />
-            </td>
-            <td style={{ border: "1px solid black", padding: "8px" }}>
-              <input
-                type="number"
-                name="contractorTotal"
-                value={formData?.contractorTotal}
+                value={formData.contractorSkilled || ''}
                 onChange={handleChange}
                 style={{ width: "70px", textAlign: "center" }}
               />
@@ -145,7 +116,7 @@ const EmployeeDetailsSection = ({ formData, handleChange }) => {
               <input
                 type="number"
                 name="contractorMale"
-                value={formData?.contractorMale}
+                value={formData.contractorMale || ''}
                 onChange={handleChange}
                 style={{ width: "70px", textAlign: "center" }}
               />
@@ -154,35 +125,38 @@ const EmployeeDetailsSection = ({ formData, handleChange }) => {
               <input
                 type="number"
                 name="contractorFemale"
-                value={formData?.contractorFemale}
+                value={formData.contractorFemale || ''}
+                onChange={handleChange}
+                style={{ width: "70px", textAlign: "center" }}
+              />
+            </td>
+            <td style={{ border: "1px solid black", padding: "8px" }}>
+              <input
+                type="number"
+                name="contractorTotal"
+                value={formData.contractorTotal || ''}
                 onChange={handleChange}
                 style={{ width: "70px", textAlign: "center" }}
               />
             </td>
           </tr>
           <tr>
-            <td
-              style={{
-                border: "1px solid black",
-                padding: "8px",
-                fontWeight: "bold",
-              }}
-            >
+            <td style={{ border: "1px solid black", padding: "8px", fontWeight: "bold" }}>
               Total
             </td>
             <td style={{ border: "1px solid black", padding: "8px" }}>0</td>
             <td style={{ border: "1px solid black", padding: "8px" }}>0</td>
             <td style={{ border: "1px solid black", padding: "8px" }}>
-              {Number(directSkilled) + Number(contractorSkilled)}
+              {computedTotals.skilledTotal}
             </td>
             <td style={{ border: "1px solid black", padding: "8px" }}>
-              {Number(directTotal) + Number(contractorTotal)}
+              {computedTotals.maleTotal}
             </td>
             <td style={{ border: "1px solid black", padding: "8px" }}>
-              {Number(directMale) + Number(contractorMale)}
+              {computedTotals.femaleTotal}
             </td>
             <td style={{ border: "1px solid black", padding: "8px" }}>
-              {Number(directFemale) + Number(contractorFemale)}
+              {computedTotals.workersTotal}
             </td>
           </tr>
         </tbody>

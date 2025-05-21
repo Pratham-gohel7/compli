@@ -34,7 +34,7 @@ const PartC = ({ formData, handleChange }) => {
                 <input
                     type="number"
                     name="contractLabourDays"
-                    value={formData.contractLabourDays || 0}
+                    value={formData.contractLabourDays || ""}
                     onChange={handleChange}
                 />
             </div>
@@ -44,7 +44,7 @@ const PartC = ({ formData, handleChange }) => {
                 <input
                     type="number"
                     name="contractManDaysWorked"
-                    value={formData.contractManDaysWorked || 0}
+                    value={formData.contractManDaysWorked || ""}
                     onChange={handleChange}
                 // disabled={isEditingDisabled}
                 />
@@ -55,7 +55,7 @@ const PartC = ({ formData, handleChange }) => {
                 <input
                     type="number"
                     name="directLabourDays"
-                    value={formData.directLabourDays || 0}
+                    value={formData.directLabourDays || ""}
                     onChange={handleChange}
                 // disabled={isEditingDisabled}
                 />
@@ -66,7 +66,7 @@ const PartC = ({ formData, handleChange }) => {
                 <input
                     type="number"
                     name="directManDaysWorked"
-                    value={formData.directManDaysWorked || 0}
+                    value={formData.directManDaysWorked || ""}
                     onChange={handleChange}
                 // disabled={isEditingDisabled}
                 />

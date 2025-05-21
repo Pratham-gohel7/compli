@@ -5,9 +5,11 @@ const LeaveRequestPage = () => {
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [file, setFile] = useState(null);
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   // Fetch leave requests from backend when component mounts
   useEffect(() => {
-    axios.get("http://localhost:5001/api/leave")
+    axios.get(`${API_BASE_URL}/leave`)
       .then(response => {
         setLeaveRequests(response.data);
       })
@@ -31,7 +33,7 @@ const LeaveRequestPage = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    axios.post("http://localhost:5001/api/leave/upload", formData)
+    axios.post(`${API_BASE_URL}/leave/upload`, formData)
       .then(response => {
         alert("File uploaded successfully!");
         window.location.reload();  // Refresh to display new data

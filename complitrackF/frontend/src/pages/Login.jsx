@@ -6,12 +6,13 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); // For showing error messages
   const navigate = useNavigate(); // For redirection
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       // Make API request to login
-      const response = await fetch("http://localhost:5001/api/auth/login", {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

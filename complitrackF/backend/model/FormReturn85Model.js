@@ -17,14 +17,14 @@ const FormReturn85 = sequelize.define(
         isDate: true,
       },
     },
-    employer_name: {
+    company_name: {
       type: DataTypes.STRING(255),
       allowNull: false,
       validate: {
         notEmpty: true,
       },
     },
-    employer_address: {
+    company_address: {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
@@ -126,10 +126,5 @@ const FormReturn85 = sequelize.define(
     },
   }
 );
-
-// Add instance methods if needed
-// EmploymentReturn.prototype.getSummary = function() {
-//   return `${this.employer_name} - ${this.reporting_period}`;
-// };
 
 module.exports = FormReturn85;

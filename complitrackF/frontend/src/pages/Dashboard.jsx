@@ -3,10 +3,11 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recha
 
 const Dashboard = () => {
   const [chartData, setChartData] = useState([]);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     // Fetch data from the backend API
-    fetch("http://localhost:5001/api/employees/employees")
+    fetch(`${API_BASE_URL}/employees/employees`)
       .then((response) => response.json())
       .then((data) => setChartData(data))
       .catch((error) => console.error("Error fetching employee data:", error));

@@ -76,7 +76,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <Link to="/FormNo15">Form No 15</Link>
                 <Link to="/FormNo28">Form No 28</Link>
                 <Link to="/FormReturn85">Return 85%</Link>
-                <Link to="/FormCNF">CNF Form</Link>
+                <Link to="/FormCNV">CNV Form</Link>
                 <Link to="/halfyearlyreturn">Half Yearly Return</Link>
                 <Link to="/Annualreturn">Annual Return</Link>
               </div>
@@ -95,7 +95,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <Link to="/FormNo15Pdf">Form 15</Link>
                 <Link to="/FormNo28Pdf">Form 28</Link>
                 <Link to="/Return85Pdf">Form Return 85%</Link>
-                <Link to="/CNFFormPdf">CNF Form</Link>
+                <Link to="/CNVFormPdf">CNV Form</Link>
                 <Link to="/HalfYearlyReturnPdf">Half Yearly Return</Link>
                 <Link to="/AnnualReturnPdf">Annual Return</Link>
               </div>

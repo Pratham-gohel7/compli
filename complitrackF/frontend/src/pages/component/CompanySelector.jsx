@@ -4,9 +4,10 @@ import axios from "axios";
 
 const CompanySelector = ({ onSelect }) => {
     const [companies, setCompanies] = useState([]);
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     useEffect(() => {
-        axios.get("http://localhost:5001/api/companies")
+        axios.get(`${API_BASE_URL}/companies`)
             .then((response) => setCompanies(response.data))
             .catch((error) => console.error("❌ Error fetching companies:", error));
     }, []);

@@ -7,11 +7,12 @@ const FormNo12Pdf = () => {
     const [pdfUrl, setPdfUrl] = useState("");
     // const [pdfUrl, setPdfUrl] = useState("");
     const [loading, setLoading] = useState(false);
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
 
     useEffect(() => {
-        axios.get("http://localhost:5001/api/companies")
+        axios.get(`${API_BASE_URL}/companies`)
             .then(response => {
                 setCompanies(response.data);
             })
@@ -26,7 +27,7 @@ const FormNo12Pdf = () => {
 
         setLoading(true);
         try {
-            const response = await fetch("http://localhost:5001/api/generate-form12-pdf", {
+            const response = await fetch(`${API_BASE_URL}/generate-form12-pdf`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ company_id: selectedCompanyId })

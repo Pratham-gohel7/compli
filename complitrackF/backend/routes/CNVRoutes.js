@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const CNF = require('../model/CNFModel');
+const CNV = require('../model/CNVModel');
 const { check, validationResult } = require('express-validator');
 const ejs = require("ejs");
 const path = require("path");
@@ -9,7 +9,7 @@ const pdf = require("html-pdf");
 const { Sequelize } = require("sequelize");
 
 // Validation rules
-const validateFormCNF = [
+const validateFormCNV = [
   // Employer Info
   check('employer_name').trim().notEmpty().withMessage('Employer name is required'),
   check('employer_address').trim().notEmpty().withMessage('Address is required'),
@@ -33,8 +33,7 @@ const validateFormCNF = [
 ];
 
 // POST endpoint - Save form data
-router.post('/save', async (req, res) => {
-  // Validate inputs
+router.post('/save', validateFormCNV, async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ 
@@ -47,20 +46,21 @@ router.post('/save', async (req, res) => {
   }
 
   try {
-    // Prepare the data
     const formData = {
       ...req.body,
-      status: 'submitted' // Default status
+      status: 'submitted'
     };
 
-    // Create record
-    const savedForm = await CNF.create(formData);
-    
+    const savedForm = await CNV.create(formData);
+    console.log("Received CNV form data:", req.body);
+
     res.status(201).json({
       message: 'Form submitted successfully',
+
+      success: true,
       data: {
         id: savedForm.id,
-        referenceNumber: `CNF-${savedForm.id.toString().padStart(6, '0')}`
+        referenceNumber: `CNV-${savedForm.id.toString().padStart(6, '0')}`
       }
     });
   } catch (error) {
@@ -73,10 +73,11 @@ router.post('/save', async (req, res) => {
   }
 });
 
+
 // Get distinct employer names
 router.get('/employers', async (req, res) => {
     try {
-        const employers = await CNF.findAll({
+        const employers = await CNV.findAll({
             attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('employer_name')), 'employer_name']],
         });
         res.json(employers.map(e => e.employer_name));
@@ -88,7 +89,7 @@ router.get('/employers', async (req, res) => {
 // with date
 router.get('/dates/:employerName', async (req, res) => {
     try {
-        const date = await CNF.findAll({
+        const date = await CNV.findAll({
             where: { employer_name: req.params.employerName },
             attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('updatedAt')), 'updatedAt']],
             order: [['updatedAt', 'DESC']]
@@ -102,7 +103,7 @@ router.get('/dates/:employerName', async (req, res) => {
 // Get specific return data
 router.get('/data/:employerName/:date', async (req, res) => {
     try {
-        const returnData = await CNF.findOne({
+        const returnData = await CNV.findOne({
             where: {
                 employer_name: req.params.employerName,
                 updatedAt: req.params.date
@@ -124,7 +125,7 @@ router.get("/generate-pdf/:employerName/:date", async (req, res) => {
     console.log("➡️ Generating PDF for employer:", employerName, "Year:", date);
 
     try {
-        const record = await CNF.findOne({
+        const record = await CNV.findOne({
             where: {
                 employer_name: employerName,
                 updatedAt: date,
@@ -135,22 +136,13 @@ router.get("/generate-pdf/:employerName/:date", async (req, res) => {
             console.warn("⚠️ No data found for that employer and period.");
             return res.status(404).json({ pdfUrl: null, message: "No data found." });
         }
-
-        // let jsonData;
-        // try {
-        //     jsonData = JSON.parse(record.form_data);
-        // } catch (err) {
-        //     console.error("❌ Failed to parse JSON data:", err.message);
-        //     return res.status(500).json({ message: "Invalid JSON format in DB." });
-        // }
-
-        // ⬇️ Render the EJS template with data from DB
+        
         const html = await ejs.renderFile(
-            path.join(__dirname, "../views/CNF.ejs"),
+            path.join(__dirname, "../views/CNV.ejs"),
             { data: record }
         );
 
-        const filename = `cnf-${employerName}-${record.id}.pdf`;
+        const filename = `cnv-${employerName}-${record.id}.pdf`;
         const pdfPath = path.join(__dirname, "../public/pdfs", filename);
 
         pdf.create(html, { format: "A4" }).toFile(pdfPath, (err, result) => {

@@ -55,10 +55,10 @@ export const FormProvider = ({ children }) => {
         partC: {
             contractorNameAddress: "",
             contractorWorkNature: "",
-            contractLabourDays: 0,
-            contractManDaysWorked: 0,
-            directLabourDays: 0,
-            directManDaysWorked: 0,
+            contractLabourDays: "",
+            contractManDaysWorked: "",
+            directLabourDays: "",
+            directManDaysWorked: "",
             establishmentChanges: "",
         },
         yearlyReturn: {
@@ -110,6 +110,20 @@ export const FormProvider = ({ children }) => {
                 adolescentMale: "",
                 adolescentFemale: "",
                 adolescentTotal: "",
+
+                avgAdultEmployedMale: "",
+                avgAdultEmployedFemale: "",
+                avgAdultEmployedTotal: "",
+                avgAdolescentEmployedMale: "",
+                avgAdolescentEmployedFemale: "",
+                avgAdolescentEmployedTotal: "",
+
+                totalAdultManHoursMale: "",
+                totalAdultManHoursFemale: "",
+                totalAdultManHoursTotal: "",
+                totalAdolescentManHoursMale: "",
+                totalAdolescentManHoursFemale: "",
+                totalAdolescentManHoursTotal: "",
                 totalManHoursWorked: ""
             },
             partD_CDE: {
@@ -188,82 +202,82 @@ export const FormProvider = ({ children }) => {
                 accidentsTable: [
                     {
                         category: "Accidents including dangerous occurrences and major accidents involving injuries/deaths.",
-                        accidentsOccurrences: 0,
-                        injuredInside: 0,
-                        injuredOutside: 0,
-                        fatalAccidents: 0,
-                        fatalInjuredInside: 0,
-                        fatalInjuredOutside: 0,
-                        fatalKilledInside: 0,
-                        fatalKilledOutside: 0
+                        accidentsOccurrences: "",
+                        injuredInside: "",
+                        injuredOutside: "",
+                        fatalAccidents: "",
+                        fatalInjuredInside: "",
+                        fatalInjuredOutside: "",
+                        fatalKilledInside: "",
+                        fatalKilledOutside: ""
                     },
                     {
                         category: "Dangerous occurrences not involving injuries/deaths.",
-                        accidentsOccurrences: 0,
-                        injuredInside: 0,
-                        injuredOutside: 0,
-                        fatalAccidents: 0,
-                        fatalInjuredInside: 0,
-                        fatalInjuredOutside: 0,
-                        fatalKilledInside: 0,
-                        fatalKilledOutside: 0
+                        accidentsOccurrences: "",
+                        injuredInside: "",
+                        injuredOutside: "",
+                        fatalAccidents: "",
+                        fatalInjuredInside: "",
+                        fatalInjuredOutside: "",
+                        fatalKilledInside: "",
+                        fatalKilledOutside: ""
                     },
                     {
                         category: "Dangerous occurrences involving injuries/deaths.",
-                        accidentsOccurrences: 0,
-                        injuredInside: 0,
-                        injuredOutside: 0,
-                        fatalAccidents: 0,
-                        fatalInjuredInside: 0,
-                        fatalInjuredOutside: 0,
-                        fatalKilledInside: 0,
-                        fatalKilledOutside: 0
+                        accidentsOccurrences: "",
+                        injuredInside: "",
+                        injuredOutside: "",
+                        fatalAccidents: "",
+                        fatalInjuredInside: "",
+                        fatalInjuredOutside: "",
+                        fatalKilledInside: "",
+                        fatalKilledOutside: ""
                     },
                     {
                         category: "Major accidents involving injuries/deaths.",
-                        accidentsOccurrences: 0,
-                        injuredInside: 0,
-                        injuredOutside: 0,
-                        fatalAccidents: 0,
-                        fatalInjuredInside: 0,
-                        fatalInjuredOutside: 0,
-                        fatalKilledInside: 0,
-                        fatalKilledOutside: 0
+                        accidentsOccurrences: "",
+                        injuredInside: "",
+                        injuredOutside: "",
+                        fatalAccidents: "",
+                        fatalInjuredInside: "",
+                        fatalInjuredOutside: "",
+                        fatalKilledInside: "",
+                        fatalKilledOutside: ""
                     },
                     {
                         category: "Major accidents not involving injuries/deaths.",
-                        accidentsOccurrences: 0,
-                        injuredInside: 0,
-                        injuredOutside: 0,
-                        fatalAccidents: 0,
-                        fatalInjuredInside: 0,
-                        fatalInjuredOutside: 0,
-                        fatalKilledInside: 0,
-                        fatalKilledOutside: 0
+                        accidentsOccurrences: "",
+                        injuredInside: "",
+                        injuredOutside: "",
+                        fatalAccidents: "",
+                        fatalInjuredInside: "",
+                        fatalInjuredOutside: "",
+                        fatalKilledInside: "",
+                        fatalKilledOutside: ""
                     }
                 ],
                 
                 // Section (3) - Injuries Table
                 injuriesTable: Array(5).fill({
-                    hazardousProcessAccidents: 0,
-                    hazardousProcessFatal: 0,
-                    hazardousProcessNonfatal: 0,
-                    dangerousOperationsAccidents: 0,
-                    dangerousOperationsFatal: 0,
-                    dangerousOperationsNonfatal: 0,
-                    otherAccidents: 0,
-                    otherFatal: 0,
-                    otherNonfatal: 0
+                    hazardousProcessAccidents: "",
+                    hazardousProcessFatal: "",
+                    hazardousProcessNonfatal: "",
+                    dangerousOperationsAccidents: "",
+                    dangerousOperationsFatal: "",
+                    dangerousOperationsNonfatal: "",
+                    otherAccidents: "",
+                    otherFatal: "",
+                    otherNonfatal: ""
                 }),
                 
                 // Section (4) - Nonfatal Injuries
                 nonfatalInjuriesCurrentYear: {
-                    numberOfInjuries: 0,
-                    mandaysLost: 0
+                    numberOfInjuries: "",
+                    mandaysLost: ""
                 },
                 nonfatalInjuriesPreviousYear: {
-                    numberOfInjuries: 0,
-                    mandaysLost: 0
+                    numberOfInjuries: "",
+                    mandaysLost: ""
                 },
             }
         }

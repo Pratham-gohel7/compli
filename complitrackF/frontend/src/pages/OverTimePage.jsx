@@ -7,6 +7,7 @@ const OverTimePage = () => {
     const [overtimeData, setOvertimeData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     // Handle file selection
     const handleFileChange = (event) => {
@@ -36,7 +37,7 @@ const OverTimePage = () => {
         try {
             setLoading(true);
             setError("");
-            await axios.post("http://localhost:5001/api/overtime/upload-overtime", formData, {
+            await axios.post(`${API_BASE_URL}/overtime/upload-overtime`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
@@ -53,7 +54,7 @@ const OverTimePage = () => {
     // Fetch overtime data from backend
     const fetchOvertimeData = async () => {
         try {
-            const response = await axios.get("http://localhost:5001/api/overtime");
+            const response = await axios.get(`${API_BASE_URL}/overtime`);
             setOvertimeData(response.data);
         } catch (err) {
             console.error("Error fetching overtime data:", err);

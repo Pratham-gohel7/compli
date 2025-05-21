@@ -5,6 +5,7 @@ import { useDropzone } from "react-dropzone";
 const UploadExcel = () => {
     const [file, setFile] = useState(null);
     const [data, setData] = useState([]);
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -20,7 +21,7 @@ const UploadExcel = () => {
         formData.append("file", file);
 
         try {
-            const response = await axios.post("http://localhost:5001/api/excel/upload", formData, {
+            const response = await axios.post(`${API_BASE_URL}/excel/upload`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
             setData(response.data);

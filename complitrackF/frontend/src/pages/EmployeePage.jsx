@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
-
-
 const EmployeePage = () => {
   const [employees, setEmployees] = useState([]);
   const [companies, setCompanies] = useState([]);  // New state for company data
   const [file, setFile] = useState(null);
 
-
-
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const fetchdata = () => {
-    axios.get("http://localhost:5001/api/employees")
+    axios.get(`${API_BASE_URL}/employees`)
       .then(response => {
         setEmployees(response.data);
       })
@@ -21,7 +17,7 @@ const EmployeePage = () => {
       });
 
     // Fetch company data
-    axios.get("http://localhost:5001/api/companies")
+    axios.get(`${API_BASE_URL}/companies"]`)
       .then(response => {
         setCompanies(response.data);
       })
@@ -46,7 +42,7 @@ const EmployeePage = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    axios.post("http://localhost:5001/api/employees/upload", formData)
+    axios.post(`${API_BASE_URL}/employees/upload`, formData)
       .then(response => {
         alert("File uploaded successfully!");
         fetchdata();

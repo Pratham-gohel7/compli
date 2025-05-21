@@ -7,10 +7,11 @@ const FormNo13Pdf = () => {
     const [selectedMonthYear, setSelectedMonthYear] = useState("");
     const [pdfUrl, setPdfUrl] = useState("");
     const [loading, setLoading] = useState(false);
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     // Fetch companies on component mount
     useEffect(() => {
-        axios.get("http://localhost:5001/api/companies")
+        axios.get(`${API_BASE_URL}/companies`)
             .then(response => setCompanies(response.data))
             .catch(error => console.error("Error fetching companies:", error));
     }, []);
@@ -25,11 +26,11 @@ const FormNo13Pdf = () => {
 
         try {
             const response = await axios.get(
-                `http://localhost:5001/api/overtime/generate-pdf?company_id=${selectedCompany}&month_year=${selectedMonthYear}`
+                `${API_BASE_URL}/overtime/generate-pdf?company_id=${selectedCompany}&month_year=${selectedMonthYear}`
             );
 
             if (response.data.pdfUrl) {
-                setPdfUrl(`http://localhost:5001${response.data.pdfUrl}`);
+                setPdfUrl(`${API_BASE_URL}${response.data.pdfUrl}`);
             } else {
                 alert("Error generating PDF");
             }

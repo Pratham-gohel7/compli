@@ -1,53 +1,3 @@
-// const express = require("express");
-// const FormNo28 = require("../model/FormNo28");
-// const Employee = require("../model/Employee");
-// const Company = require("../model/Company");
-
-// const router = express.Router();
-
-// /**
-//  * @route POST /api/formno28
-//  * @desc Insert attendance data into FormNo28 model
-//  */
-// router.post("/form28", async (req, res) => {
-//     try {
-//         const formData = req.body;
-
-//         if (!formData || !Array.isArray(formData) || formData.length === 0) {
-//             return res.status(400).json({ error: "Invalid data provided" });
-//         }
-
-//         // Insert all records in bulk
-//         const insertedData = await Form28.bulkCreate(formData);
-
-//         res.status(201).json({ message: "Form No. 28 data saved successfully", data: insertedData });
-//     } catch (error) {
-//         console.error("Error inserting Form No. 28 data:", error);
-//         res.status(500).json({ error: "Internal Server Error" });
-//     }
-// });
-
-// /**
-//  * @route GET /api/formno28
-//  * @desc Fetch all Form No. 28 records
-//  */
-// router.get("/", async (req, res) => {
-//     try {
-//         const records = await FormNo28.findAll({
-//             include: [
-//                 { model: Employee, as: "employee", attributes: ["first_name", "last_name", "designation"] },
-//                 { model: Company, as: "company", attributes: ["company_name"] }
-//             ]
-//         });
-//         res.json(records);
-//     } catch (error) {
-//         console.error("❌ Error fetching Form No. 28 data:", error);
-//         res.status(500).json({ error: "Internal server error" });
-//     }
-// });
-
-// module.exports = router;
-
 const FormNo28 = require("../model/FormNo28");
 const Employee = require("../model/Employee");
 const Company = require("../model/Company");
@@ -126,13 +76,18 @@ router.get("/pdf", async (req, res) => {
         };
 
         // ✅ Generate PDF and store in public folder
-        const pdfPath = `./public/FormNo28_${company_id}_${month_year}.pdf`;
-        pdf.create(html, pdfOptions).toFile(pdfPath, (err, resPdf) => {
-            if (err) {
-                return res.status(500).json({ error: "Error generating PDF" });
-            }
-            res.json({ pdfUrl: `/public/FormNo28_${company_id}_${month_year}.pdf` });
-        });
+        const filename = `FormNo28_${company_id}_${month_year}.pdf`;
+        const pdfPath = path.join(__dirname, "../public/pdfs", filename);
+
+        pdf.create(html, pdfOptions).toFile(pdfPath, (err, result) => {
+                    if (err) {
+                        console.error("PDF generation error:", err);
+                        return res.status(500).json({ error: "Failed to generate PDF" });
+                    }
+        
+                    // ✅ Send back the downloadable PDF URL
+                    res.json({ pdfUrl: `/pdfs/${filename}` });
+                });
 
     } catch (error) {
         res.status(500).json({ error: "Internal Server Error" });

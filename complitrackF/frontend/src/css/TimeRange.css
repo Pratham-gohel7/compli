@@ -1,0 +1,41 @@
+/* Custom styling for the time range picker */
+.time-range-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.time-range-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.time-range-pickers {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* width: 100%; */
+}
+
+.time-picker {
+  flex: 1;
+}
+
+.time-picker .react-time-picker__wrapper {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px 12px;
+  /* width: 100%; */
+}
+
+.time-picker .react-time-picker__inputGroup__input {
+  color: #111827;
+  font-size: 14px;
+}
+
+.time-range-separator {
+  color: #6b7280;
+  font-size: 14px;
+  /* width: 100px; */
+}

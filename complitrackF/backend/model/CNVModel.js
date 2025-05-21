@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const CNF = sequelize.define(
-  "CNF",
+const CNV = sequelize.define(
+  "CNV",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -52,11 +52,9 @@ const CNF = sequelize.define(
       allowNull: true,
     },
     age_limit: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(255),
       allowNull: true,
-      validate: {
-        min: 0,
-      },
+      defaultValue: "NO"
     },
     women_eligible: {
       type: DataTypes.ENUM("yes", "no"),
@@ -104,7 +102,11 @@ const CNF = sequelize.define(
       type: DataTypes.DATEONLY,
       allowNull: true,
     },
-    interview_time: {
+    interview_start_time: {
+      type: DataTypes.TIME,
+      allowNull: true,
+    },
+    interview_end_time: {
       type: DataTypes.TIME,
       allowNull: true,
     },
@@ -158,7 +160,7 @@ const CNF = sequelize.define(
     },
   },
   {
-    tableName: "form_cnf",
+    tableName: "form_cnv",
     timestamps: true,
     paranoid: true,
     hooks: {
@@ -171,4 +173,4 @@ const CNF = sequelize.define(
   }
 );
 
-module.exports = CNF;
+module.exports = CNV;

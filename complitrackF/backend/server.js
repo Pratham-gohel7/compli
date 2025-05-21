@@ -49,7 +49,7 @@ const formNo28Routes = require("./routes/formNo28Routes");
 const overTimeRoutes = require("./routes/OverTimeRoutes");
 const contractorRoutes = require("./routes/ContractorRoutes");
 const return85Routes = require("./routes/FormReturn85Routes");
-const CNFRoutes = require('./routes/CNFRoutes')
+const CNVRoutes = require('./routes/CNVRoutes')
 const halfYearlyReturnRoutes = require('./routes/HalfYearlyReturnRoutes')
 
 
@@ -66,7 +66,7 @@ app.use("/api/overtime", overTimeRoutes);
 app.use("/api/annualreturn", annualReturnRoutes);
 app.use("/api", contractorRoutes);
 app.use("/api/returns", return85Routes);
-app.use("/api/form-cnf", CNFRoutes);
+app.use("/api/form-cnv", CNVRoutes);
 app.use("/api/half-yearly-return", halfYearlyReturnRoutes);
 
 
@@ -80,7 +80,7 @@ app.get("/", (req, res) => {
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/public", express.static(path.join(__dirname, "public")));
-app.use("/pdfs", express.static(path.join(__dirname, "public/pdfs")));
+app.use("/api/pdfs", express.static(path.join(__dirname, "public/pdfs")));
 // Test MySQL connection
 sequelize
   .authenticate()

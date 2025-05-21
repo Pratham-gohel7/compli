@@ -234,7 +234,7 @@
         <span class="question"
           >6.Number of Employees employed (Including contract workers) :</span
         >
-        <span class="section-content"><%= data.total_employees %></span>
+        <span class="section-content"><%= Number(data.employeeDetails.directTotal || 0) + Number(data.employeeDetails.contractorTotal || 0) %></span>
       </div>
     </div>
 
@@ -253,7 +253,7 @@
         <td>0</td>
         <td>0</td>
         <td><%= data.employeeDetails.directSkilled %></td>
-        <td><%= data.employeeDetails.contractorTotal %></td>
+        <td><%= data.employeeDetails.directTotal %></td>
         <td><%= data.employeeDetails.directMale %></td>
         <td><%= data.employeeDetails.directFemale %></td>
       </tr>
@@ -268,12 +268,12 @@
       </tr>
       <tr>
         <td class="type-of-worker">Total</td>
-        <td></td>
-        <td></td>
-        <td><%= data.employeeDetails.direct.skilled %></td>
-        <td><%= data.employeeDetails.direct.total %></td>
-        <td><%= data.employeeDetails.direct.male %></td>
-        <td><%= data.employeeDetails.direct.female %></td>
+        <td>0</td>
+        <td>0</td>
+        <td><%= Number(data.employeeDetails.directSkilled || 0) + Number(data.employeeDetails.contractorSkilled || 0) %></td>
+        <td><%= Number(data.employeeDetails.directTotal || 0) + Number(data.employeeDetails.contractorTotal || 0) %></td>
+        <td><%= Number(data.employeeDetails.directMale || 0) + Number(data.employeeDetails.contractorMale || 0) %></td>
+        <td><%= Number(data.employeeDetails.directFemale || 0) + Number(data.employeeDetails.contractorFemale || 0) %></td>
       </tr>
     </table>
 
@@ -333,7 +333,7 @@
 
       <div class="section-title">
         <span class="question">6.Other deductions:, if any :</span>
-        <span class="section-content"><%= data.partA.totalDeductions %></span>
+        <span class="section-content"><%= data.partA.otherDeductions %></span>
       </div>
     </div>
 
@@ -453,8 +453,7 @@
           >7.Change, if any, in the management of establishment its locations,
           or any other particulars furnished to the Registering Officer in the
           application for the registration (Details may be furnished with dates
-          of changes) :</span
-        >
+          of changes) :</span>
         <span class="section-content"><%= data.partC.establishmentChanges %></span>
       </div>
     </div>
@@ -511,6 +510,11 @@
         <span class="in">During the year</span>
         <table>
           <tr>
+            <td>Male</td>
+            <td>Female</td>
+            <td>Total</td>
+          </tr>
+          <tr>
             <td><%= data.yearlyReturn.maleManDays %></td>
             <td><%= data.yearlyReturn.femaleManDays %></td>
             <td><%= data.yearlyReturn.totalManDays %></td>
@@ -545,7 +549,7 @@
         <span class="section-content"><%= data.yearlyReturn.creches %></span>
         <br />
         <span class="in">First aid : </span>
-        <span class="section-content"><%= data.yearlyReturn.firstaid %></span>
+        <span class="section-content"><%= data.yearlyReturn.firstAid %></span>
       </div>
     </div>
 
@@ -633,7 +637,7 @@
           "
         >
           Date:
-          <span>########</span>
+          <span>_____________</span>
         </td>
 
         <td
@@ -659,8 +663,8 @@
             border-left: none;
           "
         >
-          (i) obtained on date : 01-01-2024 <br />
-          (ii) submitted on date: 25-12-2023
+          (i) obtained on date : _____________ <br />
+          (ii) submitted on date: _____________
         </td>
       </tr>
     </table>
@@ -997,9 +1001,9 @@
 <!-- part D - G -->
       <div class="container">
         <h3>(G) Compliance status for Annual leave with wages</h3>
-        <p>(a) Whether leave with wages are allowed to the eligible employees (Sec.79)</p><span> <%= data.partD.partD_G.leaveWithWagesAllowed %></span>
-        <p>(b) Total number of workers discharged/dismissed from the service/quit employment / superannuated/died while in service during the previous year NIL</p> <%= data.partD.partD_G.workersDischarged %></span>
-        <p>(c) Number of workers in respect of whom wages in lieu of leave were paid:</p><span> <%= data.partD.partD_G.wagesInLieu %></span>
+        <p>(a) Whether leave with wages are allowed to the eligible employees (Sec.79)</p> <%= data.partD.partD_G.leaveWithWagesAllowed %>
+        <p>(b) Total number of workers discharged/dismissed from the service/quit employment / superannuated/died while in service during the previous year NIL</p> <%= data.partD.partD_G.workersDischarged %>
+        <p>(c) Number of workers in respect of whom wages in lieu of leave were paid:</p> <%= data.partD.partD_G.wagesInLieu %>
     
         <h5>Leave with Wages</h5>
     
@@ -1108,101 +1112,115 @@
       
       <div class="container">
         <h3>(H) Reporting of accidents to Factory Inspectorate</h3>
-        <p>(1) Whether arrangements are made to report the accidents involving more than 48 hours absence including injuries and Fatal to Factory Inspectorate in Form No.21 (Sec.88, GFR103): 0</p>
+        <p>(1) Whether arrangements are made to report the accidents involving more than 48 hours absence including injuries and Fatal to Factory Inspectorate in Form No.21 (Sec.88, GFR103): </p> <%= data.partD.partD_H.accidentReporting %>
     
-        <p>(2) Number of Accidents and Dangerous Occurrences during Previous year: 0</p>
-    
-        <table>
+        <p>(2) Number of Accidents and Dangerous Occurrences during Previous Year:</p>
+
+        <table border="1" cellspacing="0" cellpadding="6" style="width: 100%; border-collapse: collapse; text-align: center;">
           <thead>
             <tr>
               <th rowspan="3">Sl. No.</th>
-              <th rowspan="3">Accident / Occurrence</th>
+              <th rowspan="3">Category</th>
               <th colspan="3">Only non-fatal injuries</th>
               <th colspan="5">Fatal injuries as well as non-fatal injuries</th>
             </tr>
             <tr>
-              <th rowspan="2">Number of Persons injured inside the factory</th>
+              <th rowspan="2">Accidents / Occurrences</th>
+              <th rowspan="2">Persons injured inside (Factory)</th>
               <th rowspan="2">Persons injured outside</th>
-              <th rowspan="2">Medical Officer treated</th>
-              <th colspan="2">Number of Persons injured</th>
-              <th colspan="2">Number of Persons Killed</th>
+              <th rowspan="2">Accidents / Occurrences</th>
+              <th colspan="2">Persons injured</th>
+              <th colspan="2">Persons killed</th>
             </tr>
             <tr>
-              <th>Inside the factory</th>
+              <th>Inside</th>
               <th>Outside</th>
-              <th>Inside the factory</th>
+              <th>Inside</th>
               <th>Outside</th>
-            </tr>
+            </tr> 
           </thead>
+
+          
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Accidents including dangerous occurrences and major accidents involving injuries/deaths</td>
-              <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Dangerous occurrence not involving injuries/deaths</td>
-              <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Dangerous occurrence involving injuries/deaths</td>
-              <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Major accident involving injuries/deaths</td>
-              <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Major accident not involving injuries/deaths</td>
-              <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
+            <% const accidentRows = data.partD.partD_H.accidentsTable; %>
+            <% const categories = [
+              "Accidents including dangerous occurrences and major accidents involving injuries/deaths.",
+              "Dangerous occurrences not involving injuries/deaths.",
+              "Dangerous occurrences involving injuries/deaths.",
+              "Major accidents involving injuries/deaths.",
+              "Major accidents not involving injuries/deaths."
+            ]; %>
+
+            <% accidentRows.forEach((row, index) => { %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= categories[index] %></td>
+                <td><%= row.accidentsOccurrences %></td>
+                <td><%= row.injuredInside %></td>
+                <td><%= row.injuredOutside %></td>
+                <td><%= row.fatalAccidents %></td>
+                <td><%= row.fatalInjuredInside %></td>
+                <td><%= row.fatalInjuredOutside %></td>
+                <td><%= row.fatalKilledInside %></td>
+                <td><%= row.fatalKilledOutside %></td>
+              </tr>
+            <% }); %>
           </tbody>
         </table>
-    
+
         <p>(3) Injuries occurring inside the factory during the previous year.</p>
-    
-        <table>
+
+        <table border="1" cellspacing="0" cellpadding="5">
           <thead>
             <tr>
-              <th rowspan="2">Type of Accident</th>
+              <th rowspan="2">Sl. No.</th>
               <th colspan="3">Hazardous Process under Section 2(cb)</th>
               <th colspan="3">Dangerous operations under Section 87</th>
-              <th colspan="3">Other</th>
+              <th colspan="3">Others</th>
             </tr>
             <tr>
-              <th>Accident</th>
+              <th>Accidents</th>
               <th>Fatal</th>
-              <th>Non-fatal</th>
-              <th>Accident</th>
+              <th>Nonfatal</th>
+              <th>Accidents</th>
               <th>Fatal</th>
-              <th>Non-fatal</th>
-              <th>Accident</th>
+              <th>Nonfatal</th>
+              <th>Accidents</th>
               <th>Fatal</th>
-              <th>Non-fatal</th>
+              <th>Nonfatal</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Number of injuries</td>
-              <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
-            </tr>
+            <% data.partD.partD_H.injuriesTable.forEach((row, index) => { %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= row.hazardousProcessAccidents %></td>
+                <td><%= row.hazardousProcessFatal %></td>
+                <td><%= row.hazardousProcessNonfatal %></td>
+                <td><%= row.dangerousOperationsAccidents %></td>
+                <td><%= row.dangerousOperationsFatal %></td>
+                <td><%= row.dangerousOperationsNonfatal %></td>
+                <td><%= row.otherAccidents %></td>
+                <td><%= row.otherFatal %></td>
+                <td><%= row.otherNonfatal %></td>
+              </tr>
+            <% }); %>
           </tbody>
         </table>
+
     
-        <p>(4) (i) Non-fatal injuries (workers injured during the year in which injured workers returned to work during the year): 0</p>
+        <p>(4) </p>
+        <p>(i) Non-fatal injuries (workers injured during the year in which injured workers returned to work during the year)</p>
     
-        <p>(ii) Number of injuries: 0</p>
-        <p>(iii) Manday lost due to injuries: 0</p>
+        <p>   (a) Number of injuries: <%= data.partD.partD_H.nonfatalInjuriesCurrentYear.numberOfInjuries %></p>
+        <p>   (b) Manday lost due to injuries: <%= data.partD.partD_H.nonfatalInjuriesCurrentYear.mandaysLost %></p>
+        <br/>
+        <p>(ii) Non-fatal injuries (workers injured) occurring in the previous year in which injured workers returned to work during the current year.</p>
     
-        <p>(5) (i) Non-fatal injuries (workers injured) occurring in the previous year in which injured workers returned to work during the current year: 0</p>
+        <p>   (a) Number of injuries: <%= data.partD.partD_H.nonfatalInjuriesPreviousYear.numberOfInjuries %></p>
+        <p>   (b) Manday lost due to injuries (This should be the total manday lost during the previous year as well as in the current year.): <%= data.partD.partD_H.nonfatalInjuriesPreviousYear.mandaysLost %></p>
     
-        <p>(ii) Number of injuries: 0</p>
-        <p>(iii) Manday lost due to injuries (This should be the total manday lost during the previous year as well as in the current year.): 0</p>
-    
+        <br/><br/>
         <p>Place: _____________</p>
         <p>Date: ______________</p>
     

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const FormReturn85 = require("../model/FormReturn85Model");
+const Company = require("../model/Company")
 const { check, validationResult } = require("express-validator");
 const ejs = require("ejs");
 const path = require("path");
@@ -12,10 +13,10 @@ const { Sequelize } = require("sequelize");
 // Validation rules
 const validateReturn85 = [
   check("reporting_period").isISO8601().toDate(),
-  check("employer_name").not().isEmpty().trim().escape(),
-  check("employer_address").not().isEmpty().trim().escape(),
+  check("company_name").not().isEmpty().trim().escape(),
+  check("company_address").not().isEmpty().trim().escape(),
   check("contact_person_name").not().isEmpty().trim().escape(),
-  check("contact_mobile").isMobilePhone("any", { strictMode: false }),
+  check("contact_mobile").not().isEmpty().trim().escape(),
   check("sector").isIn([
     "Private-Act Establishment",
     "Central Govt. Under Taking",
@@ -50,12 +51,14 @@ router.post("/save", validateReturn85, async (req, res) => {
 
     res.status(201).json({
       message: "Return submitted successfully",
+      success: true,
       data: newReturn,
     });
   } catch (error) {
     // console.error('Submission error:', error);
     res.status(500).json({
       error: "Failed to submit return",
+      success: false,
       details: error.message,
     });
   }
@@ -70,9 +73,9 @@ router.get("/preview", (req, res) => {
 router.get('/employers', async (req, res) => {
     try {
         const employers = await FormReturn85.findAll({
-            attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('employer_name')), 'employer_name']],
+            attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('company_name')), 'company_name']],
         });
-        res.json(employers.map(e => e.employer_name));
+        res.json(employers.map(e => e.company_name));
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -82,7 +85,7 @@ router.get('/employers', async (req, res) => {
 router.get('/periods/:employerName', async (req, res) => {
     try {
         const periods = await FormReturn85.findAll({
-            where: { employer_name: req.params.employerName },
+            where: { company_name: req.params.employerName },
             attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('reporting_period')), 'reporting_period']],
             order: [['reporting_period', 'DESC']]
         });
@@ -98,7 +101,7 @@ router.get('/data/:employerName/:period', async (req, res) => {
     try {
         const returnData = await FormReturn85.findOne({
             where: {
-                employer_name: req.params.employerName,
+                company_name: req.params.employerName,
                 reporting_period: req.params.period
             }
         });
@@ -120,7 +123,7 @@ router.get("/generate-pdf/:employerName/:period", async (req, res) => {
     try {
         const record = await FormReturn85.findOne({
             where: {
-                employer_name: employerName,
+                company_name: employerName,
                 reporting_period: period,
             },
         });
@@ -163,6 +166,8 @@ router.get("/generate-pdf/:employerName/:period", async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
+
+
 
 // router.get("/generate-pdf/:employerName/:period", async (req, res) => {
 //   const html = await ejs.renderFile(

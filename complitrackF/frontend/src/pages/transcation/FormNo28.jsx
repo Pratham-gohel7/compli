@@ -6,10 +6,11 @@ const FormNo28 = () => {
     const [selectedCompany, setSelectedCompany] = useState("");
     const [selectedMonthYear, setSelectedMonthYear] = useState("");
     const [attendanceData, setAttendanceData] = useState([]);
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     // Fetch companies when component mounts
     useEffect(() => {
-        axios.get("http://localhost:5001/api/companies")
+        axios.get(`${API_BASE_URL}/companies`)
             .then(response => setCompanies(response.data))
             .catch(error => console.error("Error fetching companies:", error));
     }, []);
@@ -37,7 +38,7 @@ const FormNo28 = () => {
 
         try {
             const response = await axios.get(
-                `http://localhost:5001/api/attendance/fetch?company_id=${selectedCompany}&month_year=${formattedMonthYear}`
+                `${API_BASE_URL}/attendance/fetch?company_id=${selectedCompany}&month_year=${formattedMonthYear}`
             );
             // console.log("Fetched Attendance Data:", response.data); // Debugging
             setAttendanceData(response.data);
@@ -95,7 +96,7 @@ const FormNo28 = () => {
         }));
 
         try {
-            const response = await axios.post("http://localhost:5001/api/form28", formattedData);
+            const response = await axios.post(`${API_BASE_URL}/form28`, formattedData);
             alert("Data inserted successfully!");
             console.log("✅ Inserted Data:", response.data);
         } catch (error) {

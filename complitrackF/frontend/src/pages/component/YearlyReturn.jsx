@@ -1,6 +1,13 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 const YearlyReturn = ({ formData, handleChange }) => {
+    useEffect(() => {
+        const manDaysTotal = Number(formData.maleManDays || 0) + Number(formData.femaleManDays || 0);
+        if (formData.totalManDays !== manDaysTotal) {
+          handleChange({ target: { name: "totalManDays", value: manDaysTotal } });
+        }
+      }, [formData.maleManDays, formData.femaleManDays]);
+
     return (
         <div className="yearly-return-contractor">
             <div className="form-group">

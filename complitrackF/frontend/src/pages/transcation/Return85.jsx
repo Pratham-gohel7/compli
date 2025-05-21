@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Return85 = () => {
+    const [companies, setCompanies] = useState([]);
+    const [isLoadingCompanies, setIsLoadingCompanies] = useState(true);
     const [formData, setFormData] = useState({
+        company_id: "",
         reporting_period: "",
-        employer_name: "",
-        employer_address: "",
+        company_name: "",
+        company_address: "",
         contact_person_name: "",
         contact_telephone: "",
         contact_mobile: "",
@@ -16,6 +20,59 @@ const Return85 = () => {
         local_workers_percentage: "",
         total_percentage: ""
     });
+
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    // Fetch companies on component mount
+    useEffect(() => {
+        const fetchCompanies = async () => {
+        try {
+            setIsLoadingCompanies(true);
+            axios
+            .get(`${API_BASE_URL}/companies`)
+            .then((response) => setCompanies(response.data))
+            .catch((error) => console.error("Error fetching companies:", error));
+        } catch (error) {
+            console.error("Error fetching companies:", error);
+            // Optional: Add error state for UI feedback
+            // setErrorFetchingCompanies(true);
+        } finally {
+            setIsLoadingCompanies(false);
+        }
+    };
+
+    fetchCompanies();
+  }, []);
+
+
+    const handleCompanyChange = (e) => {
+        const companyId = e.target.value;
+
+        const selectedCompany = companies.find(
+        (c) => c.company_id.toString() === companyId
+        );
+        
+        if (selectedCompany) {
+            setFormData(prev => ({
+                ...prev,
+                company_id: companyId,
+                company_name: selectedCompany.company_name || "",
+                company_address: selectedCompany.address || "",
+                contact_telephone: selectedCompany.phone || "",
+                contact_mobile: selectedCompany.employer_phoneno || "",
+                contact_person_name: selectedCompany.employer_name || ""
+            }));
+        } else {
+            // Clear company-related fields if no company selected
+            setFormData(prev => ({
+                ...prev,
+                company_id: "",
+                company_name: "",
+                company_address: "",
+                contact_telephone: "",
+                contact_mobile: ""
+            }));
+        }
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -39,68 +96,62 @@ const Return85 = () => {
 
         // Auto-calculate total percentage if either percentage changes
         if (name === 'local_supervisor_percentage' || name === 'local_workers_percentage') {
-            const supervisorPct = name === 'local_supervisor_percentage' ? value : formData?.local_supervisor_percentage;
-            const workerPct = name === 'local_workers_percentage' ? value : formData?.local_workers_percentage;
+            const supervisorPct = parseFloat(
+            name === 'local_supervisor_percentage' ? value : formData.local_supervisor_percentage || 0
+            );
+            const workerPct = parseFloat(
+            name === 'local_workers_percentage' ? value : formData.local_workers_percentage || 0
+            );
             
-            if (supervisorPct && workerPct) {
-                setFormData(prev => ({
-                    ...prev,
-                    total_percentage: (Number(supervisorPct) + Number(workerPct))
-                }));
-            }
+            setFormData(prev => ({
+            ...prev,
+            total_percentage: (supervisorPct + workerPct).toFixed(2) // Keep 1 decimal place
+            }));
         }
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+    e.preventDefault();
 
-        const requiredFields = [
-            'reporting_period', 'employer_name', 'employer_address',
-            'contact_person_name', 'contact_mobile', 'sector',
-            'total_supervisors', 'total_workers',
-            'local_supervisor_percentage', 'local_workers_percentage'
-          ];
-        
-          const missingFields = requiredFields.filter(field => !formData[field]);
-          
-          if (missingFields.length > 0) {
-            alert(`Missing required fields: ${missingFields.join(', ')}`);
-            return;
-          }
-        console.log("here i am reachedS")
-        
-        // Prepare the data for submission
+    // Validate required fields
+    const requiredFields = [
+        'company_id', 'reporting_period', 'company_name', 'company_address',
+        'contact_person_name', 'contact_mobile', 'sector',
+        'total_supervisors', 'total_workers',
+        'local_supervisor_percentage', 'local_workers_percentage'
+    ];
+    
+    const missingFields = requiredFields.filter(field => !formData[field]);
+    if (missingFields.length > 0) {
+        alert(`Missing required fields: ${missingFields.join(', ')}`);
+        return;
+    }
+
+    try {
+        // Prepare data with proper number conversions
         const submissionData = {
-            ...formData,    
+            ...formData,
             total_supervisors: Number(formData.total_supervisors),
             total_workers: Number(formData.total_workers),
-            local_supervisor_percentage: Number(formData.local_supervisor_percentage),
-            local_workers_percentage: Number(formData.local_workers_percentage),
+            local_supervisor_percentage: parseFloat(formData.local_supervisor_percentage),
+            local_workers_percentage: parseFloat(formData.local_workers_percentage),
             total_employments: Number(formData.total_employments),
-            total_percentage: Number(formData.total_percentage)
+            total_percentage: parseFloat(formData.total_percentage)
         };
 
-        try {
-            const response = await fetch('http://localhost:5001/api/returns/save', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(submissionData)
-            });
+        console.log('Submitting:', submissionData); // Debug log
 
-            const data = await response.json();
-            
-            if (!response.ok) {
-                throw new Error(data.error || 'Submission failed');
-            }
+        const response = await axios.post(`${API_BASE_URL}/returns/save`, submissionData);
 
+        // Check for both response.data.success and response.status
+        if (response.data?.success || response.status === 200 || response.data?.success) {
             alert('Form submitted successfully!');
-            // Reset form after successful submission
+            // Reset form
             setFormData({
+                company_id: "",
                 reporting_period: "",
-                employer_name: "",
-                employer_address: "",
+                company_name: "",
+                company_address: "",
                 contact_person_name: "",
                 contact_telephone: "",
                 contact_mobile: "",
@@ -112,11 +163,15 @@ const Return85 = () => {
                 local_workers_percentage: "",
                 total_percentage: ""
             });
-        } catch (error) {
-            console.error('Error:', error);
-            alert(`Error: ${error.message}`);
+        } else {
+            throw new Error(response.data?.error || 'Submission failed');
         }
-    };
+    } catch (error) {
+        console.error('Submission error:', error);
+        // Show more detailed error message
+        alert(`Error: ${error.response?.data?.message || error.message || 'Submission failed'}`);
+    }
+};
 
     return (
         <div className="form-container">
@@ -125,6 +180,26 @@ const Return85 = () => {
                     Information Regarding Local and Total Employment as per the 85% Return Requirement
                 </h2>
                 
+                {/* Company Selection Dropdown */}
+                <div className='px-4 my-2'>
+                    <label className="block font-medium mb-1">Select Company *</label>
+                    <select
+                        name="company_id"
+                        value={formData.company_id}
+                        onChange={handleCompanyChange}
+                        className="w-full border rounded px-3 py-2"
+                        required
+                        disabled={isLoadingCompanies}
+                    >
+                        <option value="">{isLoadingCompanies ? 'Loading companies...' : '-- Select Company --'}</option>
+                        {companies.map(company => (
+                            <option key={company.company_id} value={company.company_id}>
+                                {company.company_name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
                 {/* Reporting Period */}
                 <div className='px-4 my-2'>
                     <label className="block font-medium mb-1">
@@ -145,16 +220,16 @@ const Return85 = () => {
                     <label className="block font-medium mb-1">1. Name & Address of Employer</label>
                     <input 
                         type="text" 
-                        name="employer_name"
-                        value={formData.employer_name}
+                        name="company_name"
+                        value={formData.company_name}
                         onChange={handleChange}
                         className="w-full border rounded px-3 py-2 mb-2" 
                         placeholder="Enter name" 
                         required
                     />
                     <textarea 
-                        name="employer_address"
-                        value={formData.employer_address}
+                        name="company_address"
+                        value={formData.company_address}
                         onChange={handleChange}
                         className="w-full border rounded px-3 py-2" 
                         placeholder="Enter address" 
@@ -178,7 +253,7 @@ const Return85 = () => {
                         required
                     />
                     <input 
-                        type="tel" 
+                        type="text" 
                         name="contact_telephone"
                         value={formData.contact_telephone}
                         onChange={handleChange}
@@ -186,7 +261,7 @@ const Return85 = () => {
                         placeholder="Telephone Number"
                     />
                     <input 
-                        type="tel" 
+                        type="text" 
                         name="contact_mobile"
                         value={formData.contact_mobile}
                         onChange={handleChange}
@@ -196,10 +271,10 @@ const Return85 = () => {
                     />
                 </div>
 
-                {/* Sector Selection */}
-                <div className='px-4 my-2'>
-                    <label className="block font-medium mb-1">3. Sector</label>
-                    <select 
+                 {/* Sector Selection */}
+                 <div className='px-4 my-2'>
+                     <label className="block font-medium mb-1">3. Sector</label>
+                     <select 
                         name="sector"
                         value={formData.sector}
                         onChange={handleChange}
@@ -281,7 +356,7 @@ const Return85 = () => {
                                     </td>
                                     <td className="border px-2 py-1">
                                         <input 
-                                            type="number" 
+                                            type="" 
                                             name="local_workers_percentage"
                                             value={formData.local_workers_percentage}
                                             onChange={handleChange}
